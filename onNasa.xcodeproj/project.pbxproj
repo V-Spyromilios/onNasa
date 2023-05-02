@@ -13,10 +13,18 @@
 		EF1A0C7E29FA6BAD00069769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF1A0C7C29FA6BAD00069769 /* Main.storyboard */; };
 		EF1A0C8029FA6BAE00069769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF1A0C7F29FA6BAE00069769 /* Assets.xcassets */; };
 		EF1A0C8329FA6BAE00069769 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF1A0C8129FA6BAE00069769 /* LaunchScreen.storyboard */; };
-		EF1A0C8C29FA6BEF00069769 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C8B29FA6BEF00069769 /* LogInViewModel.swift */; };
+		EF1A0C8C29FA6BEF00069769 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C8B29FA6BEF00069769 /* LoginViewModel.swift */; };
 		EF1A0C9829FA6FB900069769 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9729FA6FB900069769 /* RxCocoa */; };
 		EF1A0C9A29FA6FB900069769 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9929FA6FB900069769 /* RxRelay */; };
 		EF1A0C9C29FA6FB900069769 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9B29FA6FB900069769 /* RxSwift */; };
+		EF1A0CA029FAA1D400069769 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C9F29FAA1D400069769 /* MainViewController.swift */; };
+		EF1A0CA229FAAA3F00069769 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA129FAAA3F00069769 /* MainViewModel.swift */; };
+		EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0CA429FAB47B00069769 /* Alamofire */; };
+		EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA629FABA4500069769 /* Response Model.swift */; };
+		EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */; };
+		EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */; };
+		EF783ABF2A01005E0035CE71 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABE2A01005E0035CE71 /* RegistrationViewController.swift */; };
+		EF783AC12A011CA80035CE71 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783AC02A011CA80035CE71 /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +36,14 @@
 		EF1A0C7F29FA6BAE00069769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF1A0C8229FA6BAE00069769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF1A0C8429FA6BAE00069769 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF1A0C8B29FA6BEF00069769 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		EF1A0C8B29FA6BEF00069769 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EF1A0C9F29FAA1D400069769 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EF1A0CA129FAAA3F00069769 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		EF1A0CA629FABA4500069769 /* Response Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response Model.swift"; sourceTree = "<group>"; };
+		EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginNavigationController.swift; sourceTree = "<group>"; };
+		EF783ABE2A01005E0035CE71 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EF783AC02A011CA80035CE71 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1A0C9C29FA6FB900069769 /* RxSwift in Frameworks */,
+				EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */,
 				EF1A0C9A29FA6FB900069769 /* RxRelay in Frameworks */,
 				EF1A0C9829FA6FB900069769 /* RxCocoa in Frameworks */,
 			);
@@ -65,9 +81,12 @@
 			isa = PBXGroup;
 			children = (
 				EF1A0C8A29FA6BC000069769 /* Secondary Files */,
-				EF1A0C7A29FA6BAD00069769 /* LogInViewController.swift */,
-				EF1A0C8B29FA6BEF00069769 /* LogInViewModel.swift */,
+				EF783AC42A01222D0035CE71 /* Login */,
+				EF783AC32A0122120035CE71 /* main View */,
+				EF1A0CA629FABA4500069769 /* Response Model.swift */,
+				EF783AC22A0121F80035CE71 /* Registration View */,
 				EF1A0C7C29FA6BAD00069769 /* Main.storyboard */,
+				EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */,
 				EF1A0C8129FA6BAE00069769 /* LaunchScreen.storyboard */,
 				EF1A0C8429FA6BAE00069769 /* Info.plist */,
 			);
@@ -82,6 +101,34 @@
 				EF1A0C7F29FA6BAE00069769 /* Assets.xcassets */,
 			);
 			path = "Secondary Files";
+			sourceTree = "<group>";
+		};
+		EF783AC22A0121F80035CE71 /* Registration View */ = {
+			isa = PBXGroup;
+			children = (
+				EF783ABE2A01005E0035CE71 /* RegistrationViewController.swift */,
+				EF783AC02A011CA80035CE71 /* RegistrationViewModel.swift */,
+			);
+			path = "Registration View";
+			sourceTree = "<group>";
+		};
+		EF783AC32A0122120035CE71 /* main View */ = {
+			isa = PBXGroup;
+			children = (
+				EF1A0C9F29FAA1D400069769 /* MainViewController.swift */,
+				EF1A0CA129FAAA3F00069769 /* MainViewModel.swift */,
+			);
+			path = "main View";
+			sourceTree = "<group>";
+		};
+		EF783AC42A01222D0035CE71 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EF1A0C7A29FA6BAD00069769 /* LogInViewController.swift */,
+				EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */,
+				EF1A0C8B29FA6BEF00069769 /* LoginViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +151,7 @@
 				EF1A0C9729FA6FB900069769 /* RxCocoa */,
 				EF1A0C9929FA6FB900069769 /* RxRelay */,
 				EF1A0C9B29FA6FB900069769 /* RxSwift */,
+				EF1A0CA429FAB47B00069769 /* Alamofire */,
 			);
 			productName = onNasa;
 			productReference = EF1A0C7329FA6BAD00069769 /* onNasa.app */;
@@ -135,6 +183,7 @@
 			mainGroup = EF1A0C6A29FA6BAC00069769;
 			packageReferences = (
 				EF1A0C9629FA6FB900069769 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				EF1A0CA329FAB47B00069769 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = EF1A0C7429FA6BAD00069769 /* Products */;
 			projectDirPath = "";
@@ -163,10 +212,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1A0C8C29FA6BEF00069769 /* LogInViewModel.swift in Sources */,
+				EF1A0C8C29FA6BEF00069769 /* LoginViewModel.swift in Sources */,
+				EF783AC12A011CA80035CE71 /* RegistrationViewModel.swift in Sources */,
 				EF1A0C7B29FA6BAD00069769 /* LogInViewController.swift in Sources */,
 				EF1A0C7729FA6BAD00069769 /* AppDelegate.swift in Sources */,
+				EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */,
+				EF783ABF2A01005E0035CE71 /* RegistrationViewController.swift in Sources */,
+				EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */,
 				EF1A0C7929FA6BAD00069769 /* SceneDelegate.swift in Sources */,
+				EF1A0CA029FAA1D400069769 /* MainViewController.swift in Sources */,
+				EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */,
+				EF1A0CA229FAAA3F00069769 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +450,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		EF1A0CA329FAB47B00069769 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -411,6 +475,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF1A0C9629FA6FB900069769 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		EF1A0CA429FAB47B00069769 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF1A0CA329FAB47B00069769 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
