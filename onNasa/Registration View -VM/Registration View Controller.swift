@@ -1,5 +1,5 @@
 //
-//  RegistrationViewController.swift
+//  Registration View Controller.swift
 //  onNasa
 //
 //  Created by Evangelos Spyromilios on 02.05.23.

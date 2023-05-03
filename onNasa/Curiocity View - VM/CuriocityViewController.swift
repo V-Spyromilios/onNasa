@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  CuriocityViewController.swift
 //  onNasa
 //
 //  Created by Evangelos Spyromilios on 27.04.23.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class CuriocityViewController: UIViewController {
 	
 	@IBOutlet weak var labelView: UILabel!
-	let viewModel = MainViewModel()
+	private let viewModel = CuriocityViewModel()
 	
 	
 	override func viewDidLoad() {
@@ -18,16 +18,14 @@ class MainViewController: UIViewController {
 		
 		viewModel.getData(completion: { result in
 			guard let result = result, let firstPhoto = result.photos.first else {
-				print("MainViewController :: getData :: result is Nil.")
+				print("CuriocityViewController :: getData :: result is Nil.")
 				return
 			}
 			DispatchQueue.main.async {
-				self.labelView.text = firstPhoto.urlSource
+				self.labelView.text = firstPhoto.dateTaken
 			}
-			print("Total images: \(result.photos.count)")
-			print("Image Url: \(firstPhoto.urlSource)")
-			print("Date Taken: \(firstPhoto.dateTaken)")
+			print("\(firstPhoto.camera.roverId)")
 		})
 	}
-	
+
 }

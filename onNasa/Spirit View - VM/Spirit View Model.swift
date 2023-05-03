@@ -1,8 +1,8 @@
 //
-//  MainViewModel.swift
+//  Spirit View Model.swift
 //  onNasa
 //
-//  Created by Evangelos Spyromilios on 27.04.23.
+//  Created by Evangelos Spyromilios on 03.05.23.
 //
 
 import Foundation
@@ -10,14 +10,13 @@ import RxSwift
 import Alamofire
 
 
-final class MainViewModel {
+final class SpiritViewModel {
 	
 	
 	func getData(completion: ((RoverPhotos?) -> Void)?) {
-		
-		//		let url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
-		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=2"
-		
+
+		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=2"
+
 		AF.request(url)
 			.validate()
 			.responseDecodable(of: RoverPhotos.self) { response in

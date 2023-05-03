@@ -1,5 +1,5 @@
 //
-//  RegistrationViewModel.swift
+//  Registration View Model.swift
 //  onNasa
 //
 //  Created by Evangelos Spyromilios on 02.05.23.
