@@ -31,6 +31,9 @@
 		EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */; };
 		EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */; };
 		EF783AC12A011CA80035CE71 /* Registration View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783AC02A011CA80035CE71 /* Registration View Model.swift */; };
+		EFDA56202A03DC00001D1B4B /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA561F2A03DC00001D1B4B /* CollectionCell.swift */; };
+		EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56212A03EA11001D1B4B /* PickerView.swift */; };
+		EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginNavigationController.swift; sourceTree = "<group>"; };
 		EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Controller.swift"; sourceTree = "<group>"; };
 		EF783AC02A011CA80035CE71 /* Registration View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Model.swift"; sourceTree = "<group>"; };
+		EFDA561F2A03DC00001D1B4B /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		EFDA56212A03EA11001D1B4B /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mission Manifest Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +101,11 @@
 				EF1A0C8A29FA6BC000069769 /* Secondary Files */,
 				EF783AC42A01222D0035CE71 /* Login */,
 				EF1A0CA629FABA4500069769 /* Response Model.swift */,
+				EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */,
 				EF783AC22A0121F80035CE71 /* Registration View -VM */,
 				EF1A0C7C29FA6BAD00069769 /* Main.storyboard */,
+				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
+				EFDA561F2A03DC00001D1B4B /* CollectionCell.swift */,
 				EF783AC32A0122120035CE71 /* Curiocity View - VM */,
 				EF30721C2A025B4900A8D4BF /* Perserverance View - VM */,
 				EF3072262A025C7700A8D4BF /* Opportunity View - VM */,
@@ -265,6 +274,9 @@
 				EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */,
 				EF3072202A025B9800A8D4BF /* Opportunity View Model.swift in Sources */,
 				EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */,
+				EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */,
+				EFDA56202A03DC00001D1B4B /* CollectionCell.swift in Sources */,
+				EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */,
 				EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */,
 				EF1A0C7929FA6BAD00069769 /* SceneDelegate.swift in Sources */,
 				EF1A0CA029FAA1D400069769 /* CuriocityViewController.swift in Sources */,

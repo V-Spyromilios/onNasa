@@ -9,23 +9,18 @@ import UIKit
 
 class PerseveranceViewController: UIViewController {
 
+	@IBOutlet weak var pickerView: PickerView!
 	@IBOutlet weak var labelView: UILabel!
 	private let viewModel = PerseveranceViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		
-		viewModel.getData(completion: { result in
-			guard let result = result, let firstPhoto = result.photos.first else {
-				print("PerserveranceViewController :: getData :: result is Nil.")
-				return
-			}
-			DispatchQueue.main.async {
-				self.labelView.text = firstPhoto.dateTaken
-			}
-			print("\(firstPhoto.camera.roverId)")
-		})
+		createBindings()
     }
 
+	private func createBindings() {
+
+		pickerView.rx.dataSource = 
+	}
 }
