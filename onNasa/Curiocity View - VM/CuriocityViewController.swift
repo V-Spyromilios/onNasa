@@ -11,21 +11,29 @@ class CuriocityViewController: UIViewController {
 	
 	@IBOutlet weak var labelView: UILabel!
 	private let viewModel = CuriocityViewModel()
+	private var pickerMaxValue: Int?
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		viewModel.getData(completion: { result in
-			guard let result = result, let firstPhoto = result.photos.first else {
-				print("CuriocityViewController :: getData :: result is Nil.")
-				return
-			}
-			DispatchQueue.main.async {
-				self.labelView.text = firstPhoto.dateTaken
-			}
-			print("\(firstPhoto.camera.roverId)")
-		})
+		getPickerMaxValue()
+		createBindings()
+		
 	}
 
+	private func createBindings() {
+
+		//TODO: Picker to Observe pickerMaxValue
+
+		//TODO: For the CollectionView
+		
+	}
+
+	private func getPickerMaxValue() {
+
+		if let maxSol = viewModel.missionManifest.value?.manifest.totalSols {
+			pickerMaxValue = maxSol
+		}
+	}
 }

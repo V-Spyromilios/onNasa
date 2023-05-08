@@ -52,12 +52,12 @@ class RegistrationViewController: UIViewController {
 			.disposed(by: bag)
 
 		registerButton.rx.tap.subscribe(onNext: {
-			UserDefaults.standard.set("\(self.newUsername.text!)", forKey: "\(self.newUsername.text!).Username")
+			if let username = self.newUsername.text,
+			   let password = self.newPassword.text {
+				UserDefaults.standard.set(password, forKey: username)
+			}
 		}).disposed(by: bag)
 
-		registerButton.rx.tap.subscribe(onNext: {
-			UserDefaults.standard.set("\(self.newPassword.text!)", forKey: "\(self.newUsername.text!).Password")
-		}).disposed(by: bag)
 	}
 
 }

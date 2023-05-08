@@ -321,6 +321,7 @@
                     <navigationItem key="navigationItem" id="jFA-xT-F3N"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="collectionView" destination="vYH-9n-muj" id="Z4v-i2-oqh"/>
                         <outlet property="labelView" destination="7dZ-du-epv" id="K1h-hS-N0f"/>
                         <outlet property="pickerView" destination="Soh-99-D2F" id="V2C-b2-F1h"/>
                     </connections>

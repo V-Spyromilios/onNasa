@@ -15,6 +15,7 @@ final class SpiritViewModel {
 	
 	let spiritData: BehaviorRelay<RoverPhotos?> = BehaviorRelay(value: nil)
 	let sol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
+	let maxSol: Int = 2208
 	private let bag = DisposeBag()
 	
 	init() {
@@ -29,9 +30,7 @@ final class SpiritViewModel {
 			}
 		}).disposed(by: bag)
 	}
-	
-	
-	
+
 	func getData(completion: ((RoverPhotos?) -> Void)?) {
 		
 		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=\(sol.value)"
@@ -43,7 +42,7 @@ final class SpiritViewModel {
 				case .success(let result):
 					completion?(result)
 				case .failure(let error):
-					print("\(error)")
+					print("Spirit :: getData -> \(error)")
 					completion?(nil)
 				}
 			}

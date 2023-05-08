@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SpiritViewController: UIViewController {
 
@@ -15,16 +16,19 @@ class SpiritViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		viewModel.getData(completion: { result in
-			guard let result = result, let firstPhoto = result.photos.first else {
-				print("SpiritViewController :: getData :: result is Nil.")
-				return
-			}
-			DispatchQueue.main.async {
-				self.labelView.text = firstPhoto.dateTaken
-			}
-			print("\(firstPhoto.camera.roverId)")
-		})
+		printMaxSol()
     }
 
+	private func printMaxSol() {
+
+		let url = "https://api.nasa.gov/mars-photos/api/v1/manifests/spirit?&api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ"
+		AF.request(url).validate().responseDecodable(of: MissionManifest.self) { response in
+			switch response.result {
+			case .success(let manifest):
+				print("Spirit MaxSol: \(manifest.manifest.totalSols)")
+			case .failure(let error):
+				print("Spirit :: printMaxSol-> \(error)")
+			}
+		}
+	}
 }

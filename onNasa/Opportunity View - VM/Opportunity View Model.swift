@@ -15,6 +15,7 @@ final class OpportunityViewModel {
 	
 	let opportunityData: BehaviorRelay<RoverPhotos?> = BehaviorRelay(value: nil)
 	let sol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
+	let maxSol: Int = 5111
 	private let bag = DisposeBag()
 	
 	init() {
@@ -42,7 +43,7 @@ final class OpportunityViewModel {
 				case .success(let result):
 					completion?(result)
 				case .failure(let error):
-					print("\(error)")
+					print("Opportunity :: getData -> \(error)")
 					completion?(nil)
 				}
 			}

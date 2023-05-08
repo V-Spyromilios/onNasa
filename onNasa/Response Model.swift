@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Decodable Result when Quering with Rover name and sol :
 //https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&sol=1000
@@ -30,6 +31,7 @@ struct RoverPhotos: Decodable {
 		let sol: Int
 		let camera: Camera
 		let urlSource: String
+		var image: UIImage?
 		let dateTaken: String
 
 		enum CodingKeys: String, CodingKey {

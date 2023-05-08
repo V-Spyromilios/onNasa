@@ -14,14 +14,15 @@ final class RegistrationViewModel {
 	let newObservableUsername: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 	let newObservablePassword: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
-	private let bag = DisposeBag()
-
 
 	func registrationIsValid() -> Observable<Bool> {
 
 		Observable.combineLatest(newObservableUsername.startWith(""), newObservablePassword.startWith("")).map {
 			newUsername, newPassword in
-			return newUsername?.count ?? 0 > 0 && newPassword?.count ?? 0 > 0
+			guard newUsername?.count ?? 0 > 0 && newPassword?.count ?? 0 > 0 else { return false }
+
+			return true
+			
 		}
 	}
 }
