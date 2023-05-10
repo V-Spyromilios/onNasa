@@ -10,12 +10,13 @@ import UIKit
 
 // Decodable Result when Quering with Rover name and sol :
 //https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=DEMO_KEY&sol=1000
+
 struct RoverPhotos: Decodable {
-	
+
 	var photos = [Photo]()
 
 	enum CodingKeys: String, CodingKey {
-		
+
 		case photos
 	}
 
@@ -24,9 +25,9 @@ struct RoverPhotos: Decodable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.photos = try container.decode([Photo].self, forKey: .photos)
 	}
-	
+
 	struct Photo: Decodable {
-		
+
 		let id: Int
 		let sol: Int
 		let camera: Camera
@@ -52,15 +53,14 @@ struct RoverPhotos: Decodable {
 			self.dateTaken = try container.decode(String.self, forKey: .dateTaken)
 			self.camera = try container.decode(Camera.self, forKey: .camera)
 			if let url = URL(string: self.urlSource) {
-				let data = try Data(contentsOf: url)
-				
-				self.image = UIImage(data: data)
-			} else { self.image = UIImage() }
+				let imageData = try Data(contentsOf: url)
+				self.image = UIImage(data: imageData)
+			} else { self.image = UIImage(named: "nasa-logo") }
 		}
 	}
-	
+
 	struct Camera: Decodable {
-		
+
 		let name: String
 		let fullName: String
 		let roverId: Int

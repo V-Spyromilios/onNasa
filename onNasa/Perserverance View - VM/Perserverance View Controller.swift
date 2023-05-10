@@ -60,12 +60,9 @@ class PerseveranceViewController: UIViewController {
 			.compactMap { $0 }  //OR RxSwiftExt and .unwrap()
 			.map { $0.photos }
 			.map(createItems)
-		
 			.observe(on: MainScheduler.instance)
 			.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
-		
 	}
-	
 	
 	private func createItems(from photos: [RoverPhotos.Photo]) -> [SectionModel<Void, cellItem>] {
 		var cellItems: [cellItem] = []
@@ -85,12 +82,12 @@ class PerseveranceViewController: UIViewController {
 		case invalidImageData
 	}
 	
-	func getImageDataFromString(source: String) async throws -> Data {
-		guard let imageUrl = URL(string: source) else { throw ImageLoadingError.invalidURL }
-		
-		let (data, _) = try await URLSession.shared.data(from: imageUrl)
-		return data
-	}
+//	func getImageDataFromString(source: String) async throws -> Data {
+//		guard let imageUrl = URL(string: source) else { throw ImageLoadingError.invalidURL }
+//
+//		let (data, _) = try await URLSession.shared.data(from: imageUrl)
+//		return data
+//	}
 
 	private func getPickerMaxValue() {
 		
@@ -98,8 +95,6 @@ class PerseveranceViewController: UIViewController {
 			pickerMaxValue = totalSols
 		} else { pickerMaxValue = 0 }
 	}
-	
-	
 }
 
 extension PerseveranceViewController {
@@ -110,9 +105,7 @@ extension PerseveranceViewController {
 		let cameraLabelTitle: String
 		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
 	}
-	
-	
-	
+
 	private func registerCollectionCells() {
 		
 		collectionView.register(PortraitCollectionCell.self, forCellWithReuseIdentifier: "portraitCollectionCell")
