@@ -204,27 +204,32 @@
                                 <rect key="frame" x="186" y="396" width="20" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
                                 <rect key="frame" x="10" y="113" width="373" height="616"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Yw-7k-rOg">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Yw-7k-rOg">
+                                    <size key="itemSize" width="130" height="128"/>
+                                    <size key="estimatedItemSize" width="130" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="portraitCollectionCell" id="ztl-OS-fux" customClass="PortraitCollectionCell" customModule="onNasa" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="10" y="0.0" width="280" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eOr-iC-sXG">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-fX-vt8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="280" id="Xvv-zr-Qdb"/>
+                                                        <constraint firstAttribute="height" constant="300" id="dWL-PZ-YRc"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGo-xR-vup">
-                                                    <rect key="frame" x="104" y="109" width="24" height="19"/>
+                                                    <rect key="frame" x="256" y="281" width="24" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="zws-4J-0dY"/>
                                                     </constraints>
@@ -232,7 +237,7 @@
                                                     <buttonConfiguration key="configuration" style="gray"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-Dg-i1p">
-                                                    <rect key="frame" x="0.0" y="109" width="42" height="19"/>
+                                                    <rect key="frame" x="0.0" y="281" width="42" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="OAd-tG-Ean"/>
                                                     </constraints>
@@ -260,17 +265,21 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="landscapeCollectionCell" id="wgp-k6-1uQ" customClass="LandscapeCollectionCell" customModule="onNasa" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="138" width="128" height="127.99999999999997"/>
+                                        <rect key="frame" x="0.0" y="336" width="300" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hoN-tk-KsN">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="127.99999999999997"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L7t-k1-Btw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L7t-k1-Btw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="3KX-HX-Uzs"/>
+                                                        <constraint firstAttribute="height" constant="280" id="YTW-cS-LGg"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRM-3F-IKM">
-                                                    <rect key="frame" x="0.0" y="109" width="44" height="19"/>
+                                                    <rect key="frame" x="0.0" y="261" width="44" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="mnE-Tz-9vE"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="n4w-ja-aIr"/>
@@ -308,7 +317,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="errorCollectionCell" id="wzM-gf-fUR" customClass="ErrorCollectionCell" customModule="onNasa" customModuleProvider="target">
-                                        <rect key="frame" x="42" y="276" width="44" height="128"/>
+                                        <rect key="frame" x="310" y="0.0" width="44" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tNw-Xa-Av9">
                                             <rect key="frame" x="0.0" y="0.0" width="44" height="128"/>

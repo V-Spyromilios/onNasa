@@ -13,4 +13,7 @@ class PortraitCollectionCell: UICollectionViewCell {
 	@IBOutlet weak var button: UIButton!
 	@IBOutlet weak var labelView: UILabel!
 
+	override func awakeFromNib() {
+		super.awakeFromNib()
+	}
 }

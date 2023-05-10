@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Alamofire
 
 class PerseveranceViewController: UIViewController {
 	
@@ -17,11 +18,11 @@ class PerseveranceViewController: UIViewController {
 	private let viewModel = PerseveranceViewModel()
 	private let bag = DisposeBag()
 	private var pickerMaxValue: Int?
-
-	let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<Void, cellItem>>(
 	
+	let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<Void, cellItem>>(
+		
 		configureCell: { _, collectionView, indexPath, item in
-			if item.image.size.height > item.image.size.width {
+			if item.image?.size.height ?? 0 > item.image?.size.width ?? 0 {
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "portraitCollectionCell", for: indexPath) as! PortraitCollectionCell
 				cell.imageView.image = item.image
 				cell.labelView.text = item.cameraLabelTitle
@@ -42,7 +43,7 @@ class PerseveranceViewController: UIViewController {
 				return cell
 			}
 		})
-
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,41 +54,51 @@ class PerseveranceViewController: UIViewController {
 	
 	private func createBindings() {
 		//TODO: Picker to Observe pickerMaxValue
-
-		let Items = viewModel.perseveranceData
-			.flatMap{ $0?.photos }
-			.map { photo in
-				cellItem(image: photo.image ?? UIImage(), cameraLabelTitle: photo.camera.fullName)
-			}
-//		.map{ $0?.photos ?? [] }
-//		.flatMap { $0 }
-//		.map{ photo in
-//			cellItem(image: photo.image ?? UIImage(), cameraLabelTitle: photo.camera.fullName)
-//		}
-//		.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
-//																					(
-//			//			.bind(to: collectionView.rx.items(
-//			cellIdentifier: "CollectionCell", cellType: PortraitCollectionCell.self)) {
-//				index, photo, cell in
-//
-//				DispatchQueue.global().async {
-//					guard let imageUrl = URL(string: photo.urlSource) else { return }
-//
-//					guard let imagaData = try? Data(contentsOf: imageUrl) else { return }
-//					DispatchQueue.main.async {
-//						cell.imageView.image = UIImage(data: imagaData)
-//					}
-//				}
-//			}.disposed(by: bag)
+		
+		viewModel.perseveranceData
+			.asObservable()  // BehaviorRelay object to an observable sequence
+			.compactMap { $0 }  //OR RxSwiftExt and .unwrap()
+			.map { $0.photos }
+			.map(createItems)
+		
+			.observe(on: MainScheduler.instance)
+			.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
+		
 	}
 	
+	
+	private func createItems(from photos: [RoverPhotos.Photo]) -> [SectionModel<Void, cellItem>] {
+		var cellItems: [cellItem] = []
+		for photo in photos {
+			
+			let cameraFullName = photo.camera.name
+			let image = photo.image
+			cellItems.append(cellItem(image: image, cameraLabelTitle: cameraFullName))
+		}
+		let section = SectionModel<Void, cellItem>(model: (), items: cellItems)
+		return [section]
+	}
+	
+	enum ImageLoadingError: Error {
+		case invalidURL
+		case networkError
+		case invalidImageData
+	}
+	
+	func getImageDataFromString(source: String) async throws -> Data {
+		guard let imageUrl = URL(string: source) else { throw ImageLoadingError.invalidURL }
+		
+		let (data, _) = try await URLSession.shared.data(from: imageUrl)
+		return data
+	}
+
 	private func getPickerMaxValue() {
 		
 		if let totalSols = viewModel.missionManifest.value?.manifest.totalSols {
 			pickerMaxValue = totalSols
 		} else { pickerMaxValue = 0 }
 	}
-
+	
 	
 }
 
@@ -95,11 +106,11 @@ extension PerseveranceViewController {
 	
 	struct cellItem {
 		
-		let image: UIImage
+		let image: UIImage?
 		let cameraLabelTitle: String
 		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
 	}
-
+	
 	
 	
 	private func registerCollectionCells() {
@@ -107,6 +118,5 @@ extension PerseveranceViewController {
 		collectionView.register(PortraitCollectionCell.self, forCellWithReuseIdentifier: "portraitCollectionCell")
 		collectionView.register(LandscapeCollectionCell.self, forCellWithReuseIdentifier: "landscapeCollectionCell")
 		collectionView.register(ErrorCollectionCell.self, forCellWithReuseIdentifier: "errorCollectionCell")
-
 	}
 }
