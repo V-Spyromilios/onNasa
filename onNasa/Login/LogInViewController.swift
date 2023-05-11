@@ -34,7 +34,7 @@ class LogInViewController: UIViewController {
 		passwordTextField.rx.text.map { $0 ?? "" }.bind(to: viewModel.observablePassword).disposed(by: bag)
 
 		viewModel.loginIsValid().startWith(false).bind(to: loginButtonOutlet.rx.isEnabled).disposed(by: bag)
-		viewModel.loginIsValid().startWith(false).map { $0 ? 1 : 0.7 }.bind(to: loginButtonOutlet.rx.alpha).disposed(by: bag)
+		viewModel.loginIsValid().startWith(false).map { $0 ? 1 : 0.5 }.bind(to: loginButtonOutlet.rx.alpha).disposed(by: bag)
 
 		loginButtonOutlet.rx.tap.subscribe(onNext: { self.setTabbarAsRoot() }).disposed(by: bag)
 		registrationButtonOutlet.rx.tap.subscribe(onNext: { self.presentRegistationView() }).disposed(by: bag)

@@ -16,6 +16,7 @@ class PerseveranceViewController: UIViewController {
 	@IBOutlet weak var pickerView: PickerView!
 	@IBOutlet weak var collectionView: UICollectionView!
 	private let viewModel = PerseveranceViewModel()
+	@IBOutlet weak var indicator: UIActivityIndicatorView!
 	private let bag = DisposeBag()
 	private var pickerMaxValue: Int?
 	
@@ -43,15 +44,19 @@ class PerseveranceViewController: UIViewController {
 				return cell
 			}
 		})
-	
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
+		indicator.translatesAutoresizingMaskIntoConstraints = false
+//		indicator.startAnimating()
+		if indicator.isAnimating {
+			print("Is Rolling!")
+		}
 		getPickerMaxValue()
 		createBindings()
 	}
-	
+
 	private func createBindings() {
 		//TODO: Picker to Observe pickerMaxValue
 		
@@ -60,17 +65,18 @@ class PerseveranceViewController: UIViewController {
 			.compactMap { $0 }  //OR RxSwiftExt and .unwrap()
 			.map { $0.photos }
 			.map(createItems)
-			.observe(on: MainScheduler.instance)
+		//			.observe(on: MainScheduler.instance)
 			.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
+		indicator.stopAnimating()
 	}
-	
-	private func createItems(from photos: [RoverPhotos.Photo]) -> [SectionModel<Void, cellItem>] {
+
+	private func createItems(photos: [RoverPhotos.Photo]) -> [SectionModel<Void, cellItem>] {
 		var cellItems: [cellItem] = []
 		for photo in photos {
 			
-			let cameraFullName = photo.camera.name
+			let cameraName = photo.camera.name
 			let image = photo.image
-			cellItems.append(cellItem(image: image, cameraLabelTitle: cameraFullName))
+			cellItems.append(cellItem(image: image, cameraLabelTitle: cameraName))
 		}
 		let section = SectionModel<Void, cellItem>(model: (), items: cellItems)
 		return [section]
@@ -78,25 +84,27 @@ class PerseveranceViewController: UIViewController {
 	
 	enum ImageLoadingError: Error {
 		case invalidURL
-		case networkError
+		case networkError(Int)
 		case invalidImageData
 	}
-	
-//	func getImageDataFromString(source: String) async throws -> Data {
-//		guard let imageUrl = URL(string: source) else { throw ImageLoadingError.invalidURL }
-//
-//		let (data, _) = try await URLSession.shared.data(from: imageUrl)
-//		return data
-//	}
+	func getImageDataFromString(source: String) async throws -> Data {
+		guard let imageUrl = URL(string: source) else { throw ImageLoadingError.invalidURL }
+		
+		let (data,  response) = try await URLSession.shared.data(from: imageUrl)
+		let httpResponse = response as! HTTPURLResponse
+		guard httpResponse.statusCode == 200 else { throw ImageLoadingError.networkError( httpResponse.statusCode) }
+			return data
+		}
 
+	
 	private func getPickerMaxValue() {
 		
 		if let totalSols = viewModel.missionManifest.value?.manifest.totalSols {
 			pickerMaxValue = totalSols
 		} else { pickerMaxValue = 0 }
 	}
+	
 }
-
 extension PerseveranceViewController {
 	
 	struct cellItem {

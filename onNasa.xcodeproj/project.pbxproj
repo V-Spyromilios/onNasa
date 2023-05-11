@@ -17,8 +17,8 @@
 		EF1A0C9829FA6FB900069769 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9729FA6FB900069769 /* RxCocoa */; };
 		EF1A0C9A29FA6FB900069769 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9929FA6FB900069769 /* RxRelay */; };
 		EF1A0C9C29FA6FB900069769 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0C9B29FA6FB900069769 /* RxSwift */; };
-		EF1A0CA029FAA1D400069769 /* CuriocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C9F29FAA1D400069769 /* CuriocityViewController.swift */; };
-		EF1A0CA229FAAA3F00069769 /* CuriocityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA129FAAA3F00069769 /* CuriocityViewModel.swift */; };
+		EF1A0CA029FAA1D400069769 /* CuriosityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C9F29FAA1D400069769 /* CuriosityViewController.swift */; };
+		EF1A0CA229FAAA3F00069769 /* CuriosityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */; };
 		EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0CA429FAB47B00069769 /* Alamofire */; };
 		EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA629FABA4500069769 /* Response Model.swift */; };
 		EF3072192A025AD700A8D4BF /* Perserverance View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072182A025AD700A8D4BF /* Perserverance View Controller.swift */; };
@@ -49,8 +49,8 @@
 		EF1A0C8229FA6BAE00069769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF1A0C8429FA6BAE00069769 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF1A0C8B29FA6BEF00069769 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		EF1A0C9F29FAA1D400069769 /* CuriocityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriocityViewController.swift; sourceTree = "<group>"; };
-		EF1A0CA129FAAA3F00069769 /* CuriocityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriocityViewModel.swift; sourceTree = "<group>"; };
+		EF1A0C9F29FAA1D400069769 /* CuriosityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewController.swift; sourceTree = "<group>"; };
+		EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewModel.swift; sourceTree = "<group>"; };
 		EF1A0CA629FABA4500069769 /* Response Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response Model.swift"; sourceTree = "<group>"; };
 		EF3072182A025AD700A8D4BF /* Perserverance View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perserverance View Controller.swift"; sourceTree = "<group>"; };
 		EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perseverance View Model.swift"; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				EFA9215B2A0A4AF900E6B383 /* LandscapeCollectionCell.swift */,
 				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
 				EFDA561F2A03DC00001D1B4B /* PortraitCollectionCell.swift */,
-				EF783AC32A0122120035CE71 /* Curiocity View - VM */,
+				EF783AC32A0122120035CE71 /* Curiosity View - VM */,
 				EF30721C2A025B4900A8D4BF /* Perserverance View - VM */,
 				EF3072262A025C7700A8D4BF /* Opportunity View - VM */,
 				EF3072252A025C6500A8D4BF /* Spirit View - VM */,
@@ -171,13 +171,13 @@
 			path = "Registration View -VM";
 			sourceTree = "<group>";
 		};
-		EF783AC32A0122120035CE71 /* Curiocity View - VM */ = {
+		EF783AC32A0122120035CE71 /* Curiosity View - VM */ = {
 			isa = PBXGroup;
 			children = (
-				EF1A0C9F29FAA1D400069769 /* CuriocityViewController.swift */,
-				EF1A0CA129FAAA3F00069769 /* CuriocityViewModel.swift */,
+				EF1A0C9F29FAA1D400069769 /* CuriosityViewController.swift */,
+				EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */,
 			);
-			path = "Curiocity View - VM";
+			path = "Curiosity View - VM";
 			sourceTree = "<group>";
 		};
 		EF783AC42A01222D0035CE71 /* Login */ = {
@@ -291,9 +291,9 @@
 				EFA9215C2A0A4AF900E6B383 /* LandscapeCollectionCell.swift in Sources */,
 				EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */,
 				EF1A0C7929FA6BAD00069769 /* SceneDelegate.swift in Sources */,
-				EF1A0CA029FAA1D400069769 /* CuriocityViewController.swift in Sources */,
+				EF1A0CA029FAA1D400069769 /* CuriosityViewController.swift in Sources */,
 				EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */,
-				EF1A0CA229FAAA3F00069769 /* CuriocityViewModel.swift in Sources */,
+				EF1A0CA229FAAA3F00069769 /* CuriosityViewModel.swift in Sources */,
 				EF3072222A025C1C00A8D4BF /* Spirit View Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

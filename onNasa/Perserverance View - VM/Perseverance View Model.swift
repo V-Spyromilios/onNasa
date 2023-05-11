@@ -21,7 +21,7 @@ final class PerseveranceViewModel {
 	private let bag = DisposeBag()
 	
 	init() {
-
+		
 		self.getManifest { result in
 			self.missionManifest.accept(result)
 		}
@@ -66,34 +66,4 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
-//	private func createItems(from photos: [RoverPhotos.Photo]) -> [SectionModel<Void, cellItem>] {
-//		let cellItems = photos.map { photo -> cellItem in
-//			let urlString = photo.urlSource
-//			let cameraFullName = photo.camera.fullName
-//			let image = getImageFromString(source: urlString)
-//			return cellItem(image: image, cameraLabelTitle: cameraFullName)
-////			 else { return cellItem(image: UIImage(named: "nasa-logo")!, cameraLabelTitle: "") }
-//		}
-//		let section = SectionModel<Void, cellItem>(model: (), items: cellItems)
-//		return [section]
-//	}
-
-//	func getImageFromString(source: String) -> UIImage {
-//		var image: UIImage?
-//			DispatchQueue.global().async  {
-//				
-//				guard let imageUrl = URL(string: source) else { return }
-//				guard let imageData = try? Data(contentsOf: imageUrl) else { return }
-//				let image = UIImage(data: imageData)
-//			}
-//		return image!
-//	}
-//
-//	struct cellItem {
-//		
-//		let image: UIImage
-//		let cameraLabelTitle: String
-//		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
-//	}
-
 }

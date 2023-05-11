@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D8K-EF-8UU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mf5-9f-n1H">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -26,13 +26,13 @@
                                         <color key="textColor" systemColor="systemGray6Color"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-ac-xOV">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XEC-ac-xOV">
                                         <rect key="frame" x="0.0" y="48.666666666666686" width="369" height="34"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-mK-zdO">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-mK-zdO">
                                         <rect key="frame" x="0.0" y="97.666666666666686" width="369" height="34"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -179,7 +179,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <tabBarAppearance key="standardAppearance" backgroundEffect="systemUltraThinMaterial" stackedItemPositioning="centered"/>
+                        <tabBarAppearance key="standardAppearance" backgroundEffect="systemMaterial" stackedItemPositioning="centered"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="mpG-D0-Ss0" kind="relationship" relationship="viewControllers" id="sDL-X0-tEB"/>
@@ -195,17 +196,21 @@
         <!--Item-->
         <scene sceneID="fww-9e-G7Z">
             <objects>
-                <viewController storyboardIdentifier="perserveranceTabbar" id="mpG-D0-Ss0" customClass="PerseveranceViewController" customModule="onNasa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="perserveranceTabbar" modalPresentationStyle="fullScreen" id="mpG-D0-Ss0" customClass="PerseveranceViewController" customModule="onNasa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9VY-tD-HLd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" id="Soh-99-D2F" customClass="PickerView" customModule="onNasa" customModuleProvider="target">
-                                <rect key="frame" x="186" y="396" width="20" height="60"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="prl-Ab-byv">
+                                <rect key="frame" x="186.66666666666666" y="103" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="KTf-Vv-Caf"/>
+                                    <constraint firstAttribute="width" constant="20" id="zr2-cB-lnT"/>
+                                </constraints>
+                                <color key="color" systemColor="systemCyanColor"/>
+                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
-                                <rect key="frame" x="10" y="113" width="373" height="616"/>
+                                <rect key="frame" x="0.0" y="143" width="393" height="626"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Yw-7k-rOg">
                                     <size key="itemSize" width="130" height="128"/>
                                     <size key="estimatedItemSize" width="130" height="128"/>
@@ -265,7 +270,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="landscapeCollectionCell" id="wgp-k6-1uQ" customClass="LandscapeCollectionCell" customModule="onNasa" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="336" width="300" height="280"/>
+                                        <rect key="frame" x="0.0" y="346" width="300" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hoN-tk-KsN">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
@@ -355,12 +360,15 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="281-ny-8PR"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" constant="10" id="BrQ-Sz-3my"/>
-                            <constraint firstItem="281-ny-8PR" firstAttribute="trailing" secondItem="vYH-9n-muj" secondAttribute="trailing" constant="10" id="Dlv-kH-YFW"/>
-                            <constraint firstItem="281-ny-8PR" firstAttribute="bottom" secondItem="vYH-9n-muj" secondAttribute="bottom" constant="40" id="ECa-TO-PZN"/>
-                            <constraint firstItem="vYH-9n-muj" firstAttribute="leading" secondItem="281-ny-8PR" secondAttribute="leading" constant="10" id="PAl-HE-xbq"/>
+                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" constant="40" id="BrQ-Sz-3my"/>
+                            <constraint firstItem="281-ny-8PR" firstAttribute="trailing" secondItem="vYH-9n-muj" secondAttribute="trailing" id="Dlv-kH-YFW"/>
+                            <constraint firstItem="281-ny-8PR" firstAttribute="bottom" secondItem="vYH-9n-muj" secondAttribute="bottom" id="ECa-TO-PZN"/>
+                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="prl-Ab-byv" secondAttribute="bottom" constant="20" id="GoH-n9-mUR"/>
+                            <constraint firstItem="vYH-9n-muj" firstAttribute="leading" secondItem="281-ny-8PR" secondAttribute="leading" id="PAl-HE-xbq"/>
+                            <constraint firstItem="prl-Ab-byv" firstAttribute="centerX" secondItem="281-ny-8PR" secondAttribute="centerX" id="WZw-VO-0Kv"/>
+                            <constraint firstItem="prl-Ab-byv" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" id="der-c6-dH8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qUP-mh-ZUu"/>
@@ -368,7 +376,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="vYH-9n-muj" id="Z4v-i2-oqh"/>
-                        <outlet property="pickerView" destination="Soh-99-D2F" id="V2C-b2-F1h"/>
+                        <outlet property="indicator" destination="prl-Ab-byv" id="y3q-pc-HAt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUD-VX-8jp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -394,7 +402,7 @@
         <!--Item-->
         <scene sceneID="h2P-GS-ZMT">
             <objects>
-                <viewController storyboardIdentifier="curiocityTabbar" id="Tv2-DE-faG" customClass="CuriocityViewController" customModule="onNasa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="curiosityTabbar" id="Tv2-DE-faG" customClass="CuriosityViewController" customModule="onNasa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zje-NL-LUw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -427,6 +435,10 @@
                                                     <constraint firstAttribute="trailing" secondItem="to2-Zt-7hj" secondAttribute="trailing" id="pjM-9C-H16"/>
                                                 </constraints>
                                             </view>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-gl-VDk">
+                                                <rect key="frame" x="154" y="313" width="20" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <constraints>
@@ -462,6 +474,7 @@
                     <navigationItem key="navigationItem" id="gCp-9c-Omf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="indicator" destination="Bgn-gl-VDk" id="MAn-ul-AZ1"/>
                         <outlet property="labelView" destination="to2-Zt-7hj" id="7Wn-On-6lg"/>
                     </connections>
                 </viewController>
@@ -632,6 +645,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

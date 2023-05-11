@@ -21,7 +21,7 @@ class LoginViewModel {
 
 		//TODO: Change to search username.Username of UserDefaults LOOK: RegistrationVC::CreteBindings !
 		Observable.combineLatest(observableUsername.startWith(""), observablePassword.startWith("")).map { username, password in
-			if let _ =  UserDefaults.standard.value(forKey: "username") as? String {
+			if let _ =  UserDefaults.standard.value(forKey: "\(username!)") as? String {
 				return true
 			} else { return false }
 		}

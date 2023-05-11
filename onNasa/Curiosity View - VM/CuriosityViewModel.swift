@@ -1,5 +1,5 @@
 //
-//  CuriocityViewModel.swift
+//  CuriosityViewModel.swift
 //  onNasa
 //
 //  Created by Evangelos Spyromilios on 27.04.23.
@@ -11,9 +11,9 @@ import RxCocoa
 import Alamofire
 
 
-final class CuriocityViewModel {
+final class CuriosityViewModel {
 	
-	let curiocityData: BehaviorRelay<RoverPhotos?> = BehaviorRelay(value: nil)
+	let curiosityData: BehaviorRelay<RoverPhotos?> = BehaviorRelay(value: nil)
 	let selectedSol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
 	let missionManifest: BehaviorRelay<MissionManifest?> = BehaviorRelay(value: nil)
 	private let bag = DisposeBag()
@@ -30,7 +30,7 @@ final class CuriocityViewModel {
 		
 		selectedSol.subscribe(onNext: { sol in
 			self.getData { photos in
-				self.curiocityData.accept(photos)
+				self.curiosityData.accept(photos)
 			}
 		}).disposed(by: bag)
 	}
