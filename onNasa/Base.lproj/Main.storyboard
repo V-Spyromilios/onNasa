@@ -67,9 +67,8 @@
                                     <constraint firstAttribute="width" secondItem="00O-MT-uY5" secondAttribute="height" multiplier="1:1" id="qdz-Fe-qs3"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mT-9N-grw" userLabel="registerButton">
-                                <rect key="frame" x="95" y="768" width="203" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mT-9N-grw" userLabel="registerButton">
+                                <rect key="frame" x="95.333333333333329" y="774.66666666666663" width="202.66666666666669" height="33.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Don't have an Account?">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -83,7 +82,9 @@
                             <constraint firstItem="cen-cz-aQW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="NvQ-Yu-Frz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cen-cz-aQW" secondAttribute="trailing" constant="12" id="VMD-J0-S3Y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="00O-MT-uY5" secondAttribute="trailing" constant="12" id="eAN-Lu-DbN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2mT-9N-grw" secondAttribute="bottom" constant="10" id="r66-w5-c9n"/>
                             <constraint firstItem="cen-cz-aQW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="y3S-jx-jUa"/>
+                            <constraint firstItem="2mT-9N-grw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yRA-lV-Puf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c7W-07-gDd"/>
@@ -201,16 +202,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="prl-Ab-byv">
-                                <rect key="frame" x="186.66666666666666" y="103" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="KTf-Vv-Caf"/>
-                                    <constraint firstAttribute="width" constant="20" id="zr2-cB-lnT"/>
-                                </constraints>
-                                <color key="color" systemColor="systemCyanColor"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
-                                <rect key="frame" x="0.0" y="143" width="393" height="626"/>
+                                <rect key="frame" x="0.0" y="153" width="393" height="616"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Yw-7k-rOg">
                                     <size key="itemSize" width="130" height="128"/>
                                     <size key="estimatedItemSize" width="130" height="128"/>
@@ -218,6 +211,15 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" animating="YES" style="large" id="prl-Ab-byv">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="616"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="KTf-Vv-Caf"/>
+                                        <constraint firstAttribute="width" constant="30" id="zr2-cB-lnT"/>
+                                    </constraints>
+                                    <color key="color" systemColor="systemRedColor"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="portraitCollectionCell" id="ztl-OS-fux" customClass="PortraitCollectionCell" customModule="onNasa" customModuleProvider="target">
                                         <rect key="frame" x="10" y="0.0" width="280" height="300"/>
@@ -270,7 +272,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="landscapeCollectionCell" id="wgp-k6-1uQ" customClass="LandscapeCollectionCell" customModule="onNasa" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="346" width="300" height="280"/>
+                                        <rect key="frame" x="0.0" y="336" width="300" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hoN-tk-KsN">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
@@ -362,13 +364,10 @@
                         <viewLayoutGuide key="safeArea" id="281-ny-8PR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" constant="40" id="BrQ-Sz-3my"/>
+                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" constant="50" id="BrQ-Sz-3my"/>
                             <constraint firstItem="281-ny-8PR" firstAttribute="trailing" secondItem="vYH-9n-muj" secondAttribute="trailing" id="Dlv-kH-YFW"/>
                             <constraint firstItem="281-ny-8PR" firstAttribute="bottom" secondItem="vYH-9n-muj" secondAttribute="bottom" id="ECa-TO-PZN"/>
-                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="prl-Ab-byv" secondAttribute="bottom" constant="20" id="GoH-n9-mUR"/>
                             <constraint firstItem="vYH-9n-muj" firstAttribute="leading" secondItem="281-ny-8PR" secondAttribute="leading" id="PAl-HE-xbq"/>
-                            <constraint firstItem="prl-Ab-byv" firstAttribute="centerX" secondItem="281-ny-8PR" secondAttribute="centerX" id="WZw-VO-0Kv"/>
-                            <constraint firstItem="prl-Ab-byv" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" id="der-c6-dH8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qUP-mh-ZUu"/>
@@ -645,9 +644,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -36,6 +36,8 @@ class PerseveranceViewController: UIViewController {
 			else {
 				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
 				cell.imageView.image = item.image
+				cell.labelView.backgroundColor = .systemGray5
+				cell.labelView.alpha = 0.7
 				cell.labelView.text = item.cameraLabelTitle
 				cell.labelView.font = UIFont.systemFont(ofSize: 10)
 				cell.button.setImage(item.buttonSpeakerImage, for: .normal)
@@ -47,9 +49,9 @@ class PerseveranceViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		indicator.translatesAutoresizingMaskIntoConstraints = false
-//		indicator.startAnimating()
+		indicator.startAnimating()
+		indicator.backgroundColor = .yellow
+		indicator.hidesWhenStopped = true
 		if indicator.isAnimating {
 			print("Is Rolling!")
 		}
@@ -65,7 +67,7 @@ class PerseveranceViewController: UIViewController {
 			.compactMap { $0 }  //OR RxSwiftExt and .unwrap()
 			.map { $0.photos }
 			.map(createItems)
-		//			.observe(on: MainScheduler.instance)
+			.observe(on: MainScheduler.instance)
 			.bind(to: collectionView.rx.items(dataSource: dataSource)).disposed(by: bag)
 		indicator.stopAnimating()
 	}
