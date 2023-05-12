@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
 	
 	private func setTabBarItems() {
 		
-		tabBar.items?[0].title = "Perserverance"
+		tabBar.items?[0].title = "Perseverance"
 		tabBar.items?[1].title = "Curiosity"
 		tabBar.items?[2].title = "Opportunity"
 		tabBar.items?[3].title = "Spirit"

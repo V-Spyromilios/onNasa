@@ -21,7 +21,7 @@
 		EF1A0CA229FAAA3F00069769 /* CuriosityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */; };
 		EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0CA429FAB47B00069769 /* Alamofire */; };
 		EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA629FABA4500069769 /* Response Model.swift */; };
-		EF3072192A025AD700A8D4BF /* Perserverance View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072182A025AD700A8D4BF /* Perserverance View Controller.swift */; };
+		EF3072192A025AD700A8D4BF /* Perseverance View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072182A025AD700A8D4BF /* Perseverance View Controller.swift */; };
 		EF30721B2A025AF600A8D4BF /* Perseverance View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */; };
 		EF30721E2A025B7300A8D4BF /* Opportunity View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30721D2A025B7300A8D4BF /* Opportunity View Controller.swift */; };
 		EF3072202A025B9800A8D4BF /* Opportunity View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30721F2A025B9800A8D4BF /* Opportunity View Model.swift */; };
@@ -32,9 +32,8 @@
 		EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */; };
 		EF783AC12A011CA80035CE71 /* Registration View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783AC02A011CA80035CE71 /* Registration View Model.swift */; };
 		EFA9215C2A0A4AF900E6B383 /* LandscapeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9215B2A0A4AF900E6B383 /* LandscapeCollectionCell.swift */; };
-		EFA9215E2A0A4B6000E6B383 /* ErrorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9215D2A0A4B6000E6B383 /* ErrorCollectionCell.swift */; };
 		EFA921612A0A51EA00E6B383 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EFA921602A0A51EA00E6B383 /* RxDataSources */; };
-		EFDA56202A03DC00001D1B4B /* PortraitCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA561F2A03DC00001D1B4B /* PortraitCollectionCell.swift */; };
+		EFC05A802A0E6958001313A2 /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */; };
 		EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56212A03EA11001D1B4B /* PickerView.swift */; };
 		EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,7 @@
 		EF1A0C9F29FAA1D400069769 /* CuriosityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewController.swift; sourceTree = "<group>"; };
 		EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewModel.swift; sourceTree = "<group>"; };
 		EF1A0CA629FABA4500069769 /* Response Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response Model.swift"; sourceTree = "<group>"; };
-		EF3072182A025AD700A8D4BF /* Perserverance View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perserverance View Controller.swift"; sourceTree = "<group>"; };
+		EF3072182A025AD700A8D4BF /* Perseverance View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perseverance View Controller.swift"; sourceTree = "<group>"; };
 		EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perseverance View Model.swift"; sourceTree = "<group>"; };
 		EF30721D2A025B7300A8D4BF /* Opportunity View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Opportunity View Controller.swift"; sourceTree = "<group>"; };
 		EF30721F2A025B9800A8D4BF /* Opportunity View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Opportunity View Model.swift"; sourceTree = "<group>"; };
@@ -63,8 +62,7 @@
 		EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Controller.swift"; sourceTree = "<group>"; };
 		EF783AC02A011CA80035CE71 /* Registration View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Model.swift"; sourceTree = "<group>"; };
 		EFA9215B2A0A4AF900E6B383 /* LandscapeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeCollectionCell.swift; sourceTree = "<group>"; };
-		EFA9215D2A0A4B6000E6B383 /* ErrorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCollectionCell.swift; sourceTree = "<group>"; };
-		EFDA561F2A03DC00001D1B4B /* PortraitCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitCollectionCell.swift; sourceTree = "<group>"; };
+		EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
 		EFDA56212A03EA11001D1B4B /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mission Manifest Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,10 +108,8 @@
 				EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */,
 				EF783AC22A0121F80035CE71 /* Registration View -VM */,
 				EF1A0C7C29FA6BAD00069769 /* Main.storyboard */,
-				EFA9215D2A0A4B6000E6B383 /* ErrorCollectionCell.swift */,
 				EFA9215B2A0A4AF900E6B383 /* LandscapeCollectionCell.swift */,
 				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
-				EFDA561F2A03DC00001D1B4B /* PortraitCollectionCell.swift */,
 				EF783AC32A0122120035CE71 /* Curiosity View - VM */,
 				EF30721C2A025B4900A8D4BF /* Perserverance View - VM */,
 				EF3072262A025C7700A8D4BF /* Opportunity View - VM */,
@@ -138,7 +134,8 @@
 		EF30721C2A025B4900A8D4BF /* Perserverance View - VM */ = {
 			isa = PBXGroup;
 			children = (
-				EF3072182A025AD700A8D4BF /* Perserverance View Controller.swift */,
+				EF3072182A025AD700A8D4BF /* Perseverance View Controller.swift */,
+				EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */,
 				EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */,
 			);
 			path = "Perserverance View - VM";
@@ -280,20 +277,19 @@
 				EF30721E2A025B7300A8D4BF /* Opportunity View Controller.swift in Sources */,
 				EF1A0C7729FA6BAD00069769 /* AppDelegate.swift in Sources */,
 				EF3072242A025C5A00A8D4BF /* Spirit View Model.swift in Sources */,
-				EF3072192A025AD700A8D4BF /* Perserverance View Controller.swift in Sources */,
+				EF3072192A025AD700A8D4BF /* Perseverance View Controller.swift in Sources */,
 				EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */,
 				EF3072202A025B9800A8D4BF /* Opportunity View Model.swift in Sources */,
 				EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */,
 				EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */,
-				EFDA56202A03DC00001D1B4B /* PortraitCollectionCell.swift in Sources */,
 				EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */,
-				EFA9215E2A0A4B6000E6B383 /* ErrorCollectionCell.swift in Sources */,
 				EFA9215C2A0A4AF900E6B383 /* LandscapeCollectionCell.swift in Sources */,
 				EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */,
 				EF1A0C7929FA6BAD00069769 /* SceneDelegate.swift in Sources */,
 				EF1A0CA029FAA1D400069769 /* CuriosityViewController.swift in Sources */,
 				EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */,
 				EF1A0CA229FAAA3F00069769 /* CuriosityViewModel.swift in Sources */,
+				EFC05A802A0E6958001313A2 /* CollectionHeader.swift in Sources */,
 				EF3072222A025C1C00A8D4BF /* Spirit View Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

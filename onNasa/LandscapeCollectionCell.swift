@@ -11,7 +11,7 @@ class LandscapeCollectionCell: UICollectionViewCell {
 
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var button: UIButton!
-	@IBOutlet weak var labelView: UILabel!
+
 
 	override func awakeFromNib() {
 		   super.awakeFromNib()
@@ -27,6 +27,7 @@ class LandscapeCollectionCell: UICollectionViewCell {
 		   layer.shadowOpacity = 0.5
 		   layer.masksToBounds = false
 		   layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+		
 	   }
 
 	   override func layoutSubviews() {
@@ -34,5 +35,7 @@ class LandscapeCollectionCell: UICollectionViewCell {
 
 		   layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
 	   }
+	
+	
     
 }
