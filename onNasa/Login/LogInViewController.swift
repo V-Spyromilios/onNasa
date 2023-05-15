@@ -52,12 +52,23 @@ class LogInViewController: UIViewController {
 		view.addSubview(backgroundView)
 		view.sendSubviewToBack(backgroundView)
 	}
+
 	func setTabbarAsRoot() {
+
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-		
 		let tabbarVC = storyboard.instantiateViewController(withIdentifier: "tabBarID") as! TabBarController
-		(UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabbarVC)
+		guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+			  let window = windowScene.windows.first(where: { $0.isKeyWindow }) else { return }
+
+		UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+			let navController = UINavigationController(rootViewController: tabbarVC)
+			window.rootViewController = navController
+		}, completion: nil)
 	}
+
+
+
+
 
 	private func presentRegistationView() {
 

@@ -33,7 +33,6 @@ struct RoverPhotos: Decodable {
 		let camera: Camera
 		let urlSource: String
 		let dateTaken: String
-		let image: UIImage?
 
 		enum CodingKeys: String, CodingKey {
 
@@ -52,10 +51,6 @@ struct RoverPhotos: Decodable {
 			self.urlSource = try container.decode(String.self, forKey: .urlSource)
 			self.dateTaken = try container.decode(String.self, forKey: .dateTaken)
 			self.camera = try container.decode(Camera.self, forKey: .camera)
-			if let url = URL(string: self.urlSource) {
-				let imageData = try Data(contentsOf: url)
-				self.image = UIImage(data: imageData)
-			} else { self.image = UIImage(named: "nasa-logo") }
 		}
 	}
 

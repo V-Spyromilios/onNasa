@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Alamofire
+import Kingfisher
 
 class PerseveranceViewController: UIViewController {
 	
@@ -23,13 +24,14 @@ class PerseveranceViewController: UIViewController {
 	private let bag = DisposeBag()
 	private var pickerMaxValue: Int?
 	
+	//MARK: CellItem
 	struct CellItem {
-		
-		let image: UIImage?
+		let urlSource: String
 		let cameraLabelTitle: String
 		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
 	}
 	
+	//MARK: PhotoSection
 	struct PhotoSection: SectionModelType {
 		init(original: PerseveranceViewController.PhotoSection, items: [PerseveranceViewController.CellItem]) {
 			self = original
@@ -44,6 +46,7 @@ class PerseveranceViewController: UIViewController {
 	
 	
 	override func viewWillAppear(_ animated: Bool) {
+		
 		super.viewWillAppear(animated)
 		addAndStartSpinner()
 	}
@@ -52,25 +55,30 @@ class PerseveranceViewController: UIViewController {
 		super.viewDidLoad()
 		
 		createSectionsAndDataSource()
-		
 		getPickerMaxValue()
-		
-		
 	}
-	
 	
 	
 	private func createSectionsAndDataSource() {
 		//MARK: dataSource
 		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(
 			configureCell: { (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
-				let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
+				   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
 				
-				cell.imageView.image = item.image
-				cell.button.setImage(item.buttonSpeakerImage, for: .normal)
-//				cell.labelView.text = item.cameraLabelTitle
-				return cell
-			},
+				if let url = URL(string: item.urlSource) {
+					   cell.imageView.kf.setImage(
+						   with: url,
+						   placeholder: UIImage(named: "nasa-logo"),
+						   options: [
+							   .scaleFactor(UIScreen.main.scale),
+							   .transition(.fade(1)),
+							   .cacheOriginalImage
+						   ])
+				   }
+				   cell.button.setImage(item.buttonSpeakerImage, for: .normal)
+				   cell.button.alpha = 0.4
+				   return cell
+			   },
 			configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
 				let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionHeader", for: indexPath) as! CollectionHeader
 				headerView.labelView.text = dataSource[indexPath.section].model
@@ -92,68 +100,63 @@ class PerseveranceViewController: UIViewController {
 		//			.asDriver(onErrorJustReturn: [])
 		
 		//MARK: Sections
-//		let sections = viewModel.perseveranceData
-//			.map { perseveranceData -> [String: [CellItem]] in
-//				guard let perseveranceData = perseveranceData else { return [:] }
-//
-//				var itemsDict = [String: [CellItem]]()
-//				for photo in perseveranceData.photos {
-//					let cameraName = photo.camera.name
-//					let item = CellItem(image: photo.image, cameraLabelTitle: "\(cameraName)")
-//					if itemsDict[cameraName] != nil {
-//						itemsDict[cameraName]?.append(item)
-//					} else {
-//						itemsDict[cameraName] = [item]
-//					}
-//				}
-//
-//				return itemsDict
-//			}
-//			.map { itemsDict -> [SectionModel<String, CellItem>] in
-//				var sections = [SectionModel<String, CellItem>]()
-//				for (cameraName, items) in itemsDict {
-//					let section = SectionModel(model: cameraName, items: items)
-//					sections.append(section)
-//				}
-//				return sections
-//			}
-//			.asDriver(onErrorJustReturn: [])
+		//		let sections = viewModel.perseveranceData
+		//			.map { perseveranceData -> [String: [CellItem]] in
+		//				guard let perseveranceData = perseveranceData else { return [:] }
+		//
+		//				var itemsDict = [String: [CellItem]]()
+		//				for photo in perseveranceData.photos {
+		//					let cameraName = photo.camera.name
+		//					let item = CellItem(image: photo.image, cameraLabelTitle: "\(cameraName)")
+		//					if itemsDict[cameraName] != nil {
+		//						itemsDict[cameraName]?.append(item)
+		//					} else {
+		//						itemsDict[cameraName] = [item]
+		//					}
+		//				}
+		//
+		//				return itemsDict
+		//			}
+		//			.map { itemsDict -> [SectionModel<String, CellItem>] in
+		//				var sections = [SectionModel<String, CellItem>]()
+		//				for (cameraName, items) in itemsDict {
+		//					let section = SectionModel(model: cameraName, items: items)
+		//					sections.append(section)
+		//				}
+		//				return sections
+		//			}
+		//			.asDriver(onErrorJustReturn: [])
 
 
 		let sections = viewModel.perseveranceData
 			.map { perseveranceData -> [String: [CellItem]] in
-				guard let perseveranceData = perseveranceData else { return [:] }
 				
+				guard let perseveranceData = perseveranceData else { return [:] }
 				var itemsDict = [String: [CellItem]]()
 				for photo in perseveranceData.photos {
 					let cameraName = photo.camera.name
-					let item = CellItem(image: photo.image, cameraLabelTitle: "\(cameraName)")
+					let imageUrl = photo.urlSource
+					let item = CellItem(urlSource: imageUrl, cameraLabelTitle: "\(cameraName)")
 					if itemsDict[cameraName] != nil {
 						itemsDict[cameraName]?.append(item)
 					} else {
 						itemsDict[cameraName] = [item]
 					}
 				}
-				
 				return itemsDict
 			}
 			.map { itemsDict -> [SectionModel<String, CellItem>] in
+				
 				var sections = [SectionModel<String, CellItem>]()
-				
-				// Sort section names alphabetically
 				let sortedSectionNames = itemsDict.keys.sorted()
-				
 				for cameraName in sortedSectionNames {
 					if let items = itemsDict[cameraName] {
 						let section = SectionModel(model: cameraName, items: items)
 						sections.append(section)
 					}
 				}
-				
 				return sections
-			}
-			.asDriver(onErrorJustReturn: [])
-
+			}.asDriver(onErrorJustReturn: [])
 		
 		
 		//MARK: configure header
@@ -236,7 +239,7 @@ class PerseveranceViewController: UIViewController {
 	//		guard httpResponse.statusCode == 200 else { throw ImageLoadingError.networkError( httpResponse.statusCode) }
 	//		return data
 	//	}
-	
+
 	//MARK: getPickerMaxValue
 	private func getPickerMaxValue() {
 		
@@ -244,7 +247,7 @@ class PerseveranceViewController: UIViewController {
 			pickerMaxValue = totalSols
 		} else { pickerMaxValue = 0 }
 	}
-	
+
 	//MARK: addAndStartSpinner
 	private func addAndStartSpinner() {
 		
@@ -255,5 +258,5 @@ class PerseveranceViewController: UIViewController {
 		collectionView.addSubview(spinner)
 		spinner.startAnimating()
 	}
-	
+
 }

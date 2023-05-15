@@ -36,6 +36,7 @@
 		EFC05A802A0E6958001313A2 /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */; };
 		EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56212A03EA11001D1B4B /* PickerView.swift */; };
 		EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */; };
+		EFE22A082A12539800BFAA9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EFE22A072A12539800BFAA9A /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE22A082A12539800BFAA9A /* Kingfisher in Frameworks */,
 				EF1A0C9C29FA6FB900069769 /* RxSwift in Frameworks */,
 				EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */,
 				EF1A0C9A29FA6FB900069769 /* RxRelay in Frameworks */,
@@ -209,6 +211,7 @@
 				EF1A0C9B29FA6FB900069769 /* RxSwift */,
 				EF1A0CA429FAB47B00069769 /* Alamofire */,
 				EFA921602A0A51EA00E6B383 /* RxDataSources */,
+				EFE22A072A12539800BFAA9A /* Kingfisher */,
 			);
 			productName = onNasa;
 			productReference = EF1A0C7329FA6BAD00069769 /* onNasa.app */;
@@ -242,6 +245,7 @@
 				EF1A0C9629FA6FB900069769 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				EF1A0CA329FAB47B00069769 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				EFA9215F2A0A51EA00E6B383 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				EFE22A062A12539800BFAA9A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EF1A0C7429FA6BAD00069769 /* Products */;
 			projectDirPath = "";
@@ -534,6 +538,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		EFE22A062A12539800BFAA9A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -561,6 +573,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EFA9215F2A0A51EA00E6B383 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
+		};
+		EFE22A072A12539800BFAA9A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFE22A062A12539800BFAA9A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
