@@ -8,12 +8,13 @@
 import UIKit
 import RxSwift
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
 	@IBOutlet weak var newUsername: UITextField!
 	@IBOutlet weak var newPassword: UITextField!
 	@IBOutlet weak var registerButton: UIButton!
 	@IBOutlet weak var infoButton: UIButton!
+	
 
 	private let viewModel = RegistrationViewModel()
 	private let bag = DisposeBag()
@@ -21,6 +22,7 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		newPassword.delegate = self
 		createBindings()
 		setBackground()
     }
@@ -55,9 +57,14 @@ class RegistrationViewController: UIViewController {
 			if let username = self.newUsername.text,
 			   let password = self.newPassword.text {
 				UserDefaults.standard.set(password, forKey: username)
+				self.newPassword.resignFirstResponder()
 			}
 		}).disposed(by: bag)
 
 	}
 
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
 }

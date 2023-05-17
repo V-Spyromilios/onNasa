@@ -23,8 +23,8 @@ class LandscapeCollectionCell: UICollectionViewCell {
 
 		   layer.shadowColor = UIColor.black.cgColor
 		   layer.shadowOffset = CGSize(width: 0, height: 2.0)
-		   layer.shadowRadius = 5.0
-		   layer.shadowOpacity = 0.9
+		   layer.shadowRadius = 3.0
+		   layer.shadowOpacity = 0.6
 		   layer.masksToBounds = false
 	   }
 

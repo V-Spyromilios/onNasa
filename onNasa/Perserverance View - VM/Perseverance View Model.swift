@@ -11,6 +11,7 @@ import RxSwift
 import RxDataSources
 import RxCocoa
 import Alamofire
+import UserNotifications
 
 
 final class PerseveranceViewModel {
@@ -26,6 +27,7 @@ final class PerseveranceViewModel {
 			self.missionManifest.accept(result)
 		}
 		createBindings()
+		setNotification()
 	}
 	
 	private func createBindings() {
@@ -66,4 +68,29 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
+
+	
+	func setNotification() {
+
+		let content = UNMutableNotificationContent()
+		var dateComponents = DateComponents()
+
+		content.title = "onNasa"
+		content.body = "Reminder: New Photos from Perseverance Rover."
+		content.sound = .default
+
+		dateComponents.hour = 12
+		dateComponents.minute = 11
+
+		let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+		let request = UNNotificationRequest(identifier: "MyNotification", content: content, trigger: trigger)
+		UNUserNotificationCenter.current().add(request) { error in
+			if let error = error {
+				print("PerserveranceViewModel :: setNotification -> \(error)")
+			} else {
+				print("Notification Request added.")
+			}
+		}
+	}
+
 }

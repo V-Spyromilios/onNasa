@@ -19,17 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let _ = (scene as? UIWindowScene) else { return }
 		
 	}
-	
-	func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
-
-		guard let window = self.window else { return }
-		window.rootViewController = vc
-//		UIView.transition(with: window,
-//							  duration: 0.5,
-//						  options: [.curveEaseIn],
-//							  animations: nil,
-//							  completion: nil) ???
-	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.

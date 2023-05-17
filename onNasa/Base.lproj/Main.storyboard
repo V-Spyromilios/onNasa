@@ -202,14 +202,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ho4-YG-Out">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6J-1z-ciU">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaC-GY-FOR" userLabel="Container View">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ebD-zQ-SNA">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xb9-pO-zpZ" userLabel="Choose Sol">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="flR-do-gLX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="2" height="2"/>
+                                            </label>
+                                            <pickerView tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTE-XM-fpP">
+                                                <rect key="frame" x="0.0" y="28" width="393" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="ZtC-Lc-WPr"/>
+                                                </constraints>
+                                            </pickerView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                                                <rect key="frame" x="0.0" y="83" width="393" height="583"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Yw-7k-rOg">
                                                     <size key="itemSize" width="130" height="128"/>
@@ -266,7 +282,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perseverance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22u-0X-9rH">
                                                             <rect key="frame" x="10" y="0.0" width="383" height="50"/>
-                                                            <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -284,35 +300,27 @@
                                                 </collectionReusableView>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="vYH-9n-muj" firstAttribute="top" secondItem="RaC-GY-FOR" secondAttribute="top" id="TND-z1-zDe"/>
-                                            <constraint firstAttribute="trailing" secondItem="vYH-9n-muj" secondAttribute="trailing" id="XCI-ZY-qsl"/>
-                                            <constraint firstAttribute="bottom" secondItem="vYH-9n-muj" secondAttribute="bottom" id="u07-bn-vEs"/>
-                                            <constraint firstItem="vYH-9n-muj" firstAttribute="leading" secondItem="RaC-GY-FOR" secondAttribute="leading" id="zd7-Xp-qEe"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="RaC-GY-FOR" firstAttribute="leading" secondItem="ho4-YG-Out" secondAttribute="leading" id="2Ws-aG-Mo4"/>
-                                    <constraint firstItem="RaC-GY-FOR" firstAttribute="height" secondItem="ho4-YG-Out" secondAttribute="height" id="9h0-Lw-VNp"/>
-                                    <constraint firstItem="RaC-GY-FOR" firstAttribute="width" secondItem="ho4-YG-Out" secondAttribute="width" id="XcI-Jw-Tsz"/>
-                                    <constraint firstItem="RaC-GY-FOR" firstAttribute="top" secondItem="ho4-YG-Out" secondAttribute="top" id="aT6-GG-zS3"/>
-                                    <constraint firstAttribute="trailing" secondItem="RaC-GY-FOR" secondAttribute="trailing" id="cgV-T1-5ct"/>
-                                    <constraint firstAttribute="bottom" secondItem="RaC-GY-FOR" secondAttribute="bottom" id="f4B-8X-43R"/>
+                                    <constraint firstItem="ebD-zQ-SNA" firstAttribute="centerX" secondItem="V6J-1z-ciU" secondAttribute="centerX" id="2C2-th-It5"/>
+                                    <constraint firstItem="ebD-zQ-SNA" firstAttribute="bottom" secondItem="9S3-WQ-W9v" secondAttribute="bottom" id="4qd-7x-Fhy"/>
+                                    <constraint firstItem="ebD-zQ-SNA" firstAttribute="leading" secondItem="V6J-1z-ciU" secondAttribute="leading" id="D3h-Ui-cte"/>
+                                    <constraint firstItem="ebD-zQ-SNA" firstAttribute="top" secondItem="V6J-1z-ciU" secondAttribute="top" id="L9k-xk-nUP"/>
+                                    <constraint firstAttribute="bottom" secondItem="ebD-zQ-SNA" secondAttribute="bottom" id="gRr-ms-pf3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ebD-zQ-SNA" secondAttribute="trailing" id="uX5-S5-6hy"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="QNJ-Oy-5eD"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="6HB-W1-srg"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="GAl-h3-pIS"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9S3-WQ-W9v"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="281-ny-8PR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ho4-YG-Out" firstAttribute="trailing" secondItem="281-ny-8PR" secondAttribute="trailing" id="MdI-Fl-13O"/>
-                            <constraint firstItem="ho4-YG-Out" firstAttribute="top" secondItem="281-ny-8PR" secondAttribute="top" id="PlJ-9w-f3G"/>
-                            <constraint firstItem="ho4-YG-Out" firstAttribute="bottom" secondItem="281-ny-8PR" secondAttribute="bottom" id="bVg-kJ-WZC"/>
-                            <constraint firstItem="281-ny-8PR" firstAttribute="leading" secondItem="ho4-YG-Out" secondAttribute="leading" id="rD5-Lx-uwI"/>
+                            <constraint firstItem="281-ny-8PR" firstAttribute="top" secondItem="V6J-1z-ciU" secondAttribute="top" id="F7A-7B-NHf"/>
+                            <constraint firstItem="281-ny-8PR" firstAttribute="trailing" secondItem="V6J-1z-ciU" secondAttribute="trailing" id="YNY-0s-WfZ"/>
+                            <constraint firstItem="281-ny-8PR" firstAttribute="bottom" secondItem="V6J-1z-ciU" secondAttribute="bottom" id="cUA-Iu-Ca3"/>
+                            <constraint firstItem="V6J-1z-ciU" firstAttribute="leading" secondItem="281-ny-8PR" secondAttribute="leading" id="jVK-tP-mjH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qUP-mh-ZUu"/>
@@ -321,7 +329,6 @@
                     <connections>
                         <outlet property="collectionFlow" destination="3Yw-7k-rOg" id="jd1-U1-OG3"/>
                         <outlet property="collectionView" destination="vYH-9n-muj" id="Z4v-i2-oqh"/>
-                        <outlet property="containerView" destination="RaC-GY-FOR" id="okm-Lq-LXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUD-VX-8jp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
