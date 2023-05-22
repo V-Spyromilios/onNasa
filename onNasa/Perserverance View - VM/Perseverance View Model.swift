@@ -19,37 +19,50 @@ final class PerseveranceViewModel {
 	let perseveranceData: BehaviorRelay<RoverPhotos?> = BehaviorRelay(value: nil)
 	let selectedSol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
 	let missionManifest: BehaviorRelay<MissionManifest?> = BehaviorRelay(value: nil)
+	let totalSols = BehaviorRelay<Int?>(value: 0)
 	private let bag = DisposeBag()
 	
 	init() {
 		
 		self.getManifest { result in
 			self.missionManifest.accept(result)
+			self.totalSols.accept(result?.manifest.totalSols)
 		}
 		createBindings()
 		setNotification()
 	}
 	
 	private func createBindings() {
-		
-		selectedSol.subscribe(onNext: { sol in
-			self.getData { photos in
-				self.perseveranceData.accept(photos)
+		selectedSol
+			.debounce(.milliseconds(350), scheduler: MainScheduler.instance) // to avoid multiple 'explicitlyCancelled'
+			.flatMapLatest { [weak self] sol -> Observable<RoverPhotos?> in
+				guard let self = self else { return .just(nil) }
+				return self.getData(for: sol)
 			}
-		}).disposed(by: bag)
+			.bind(to: perseveranceData)
+			.disposed(by: bag)
+		print("Selected Sol from ViewModel: \(selectedSol.value)")
 	}
 	
-	private func getData(completion: ((RoverPhotos?) -> Void)?) {
+	private func getData(for sol: Int) -> Observable<RoverPhotos?> {
+		print("Data asked")
+		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=\(sol)"
 		
-		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=\(selectedSol.value)"
-		
-		AF.request(url).validate().responseDecodable(of: RoverPhotos.self) { response in
-			switch response.result {
-			case .success(let photos):
-				completion?(photos)
-			case .failure(let error):
-				print("Perseverance :: getData -> \(error)")
-				completion?(nil)
+		return Observable.create { observer in
+			let request = AF.request(url).validate().responseDecodable(of: RoverPhotos.self) { response in
+				switch response.result {
+				case .success(let photos):
+					observer.onNext(photos)
+					observer.onCompleted()
+				case .failure(let error):
+					print("Perseverance :: getData -> \(error)")
+					observer.onNext(nil)
+					observer.onCompleted()
+				}
+			}
+			
+			return Disposables.create {
+				request.cancel()
 			}
 		}
 	}
@@ -68,20 +81,20 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
-
+	
 	
 	func setNotification() {
-
+		
 		let content = UNMutableNotificationContent()
 		var dateComponents = DateComponents()
-
+		
 		content.title = "onNasa"
-		content.body = "Reminder: New Photos from Perseverance Rover."
+		content.body = "New Photos from Perseverance Rover!"
 		content.sound = .default
-
-		dateComponents.hour = 12
+		
+		dateComponents.hour = 20
 		dateComponents.minute = 11
-
+		
 		let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 		let request = UNNotificationRequest(identifier: "MyNotification", content: content, trigger: trigger)
 		UNUserNotificationCenter.current().add(request) { error in
@@ -92,5 +105,5 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
-
+	
 }

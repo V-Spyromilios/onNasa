@@ -13,15 +13,20 @@ import Kingfisher
 
 class PerseveranceViewController: UIViewController {
 	
+	
+	@IBOutlet weak var upButton: UIButton!
+	@IBOutlet weak var downButton: UIButton!
 	@IBOutlet weak var collectionFlow: UICollectionViewFlowLayout!
 	@IBOutlet weak var containerView: UIView!
-	@IBOutlet weak var pickerView: PickerView!
+	@IBOutlet weak var pickerView: UIPickerView!
+	
 	@IBOutlet weak var collectionView: UICollectionView!
 	private let viewModel = PerseveranceViewModel()
 	let spinner = UIActivityIndicatorView()
 	
 	private let bag = DisposeBag()
 	private var pickerMaxValue: Int?
+	private var currentSol: Int?
 	
 	//MARK: CellItem
 	struct CellItem {
@@ -43,24 +48,20 @@ class PerseveranceViewController: UIViewController {
 		}
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		
-		super.viewWillAppear(animated)
-		addAndStartSpinner()
-	}
-	
+	// MARK: viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		createSectionsAndDataSource()
-		getPickerMaxValue()
+		setupPickerView()
 	}
 	
 	private func createSectionsAndDataSource() {
+		addAndStartSpinner()
 		//MARK: dataSource
 		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(configureCell:
-			{ (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
-
+																									{ (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
+			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
 			
 			if let url = URL(string: item.urlSource) {
@@ -77,7 +78,7 @@ class PerseveranceViewController: UIViewController {
 			cell.button.alpha = 0.4
 			return cell
 		},
-			configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
+		configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
 			
 			let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionHeader", for: indexPath) as! CollectionHeader
 			headerView.labelView.text = dataSource[indexPath.section].model
@@ -113,7 +114,7 @@ class PerseveranceViewController: UIViewController {
 				}
 				return sections
 			}.asDriver(onErrorJustReturn: [])
-
+		
 		sections
 			.drive(collectionView.rx.items(dataSource: dataSource))
 			.disposed(by: bag)
@@ -121,15 +122,36 @@ class PerseveranceViewController: UIViewController {
 			.asObservable()
 			.subscribe(onNext: {_ in
 				self.spinner.stopAnimating()
+				self.scrollCollectionViewToTop()
 			}).disposed(by: bag)
+		bindPickerValues()
 	}
-
-	//MARK: getPickerMaxValue
-	private func getPickerMaxValue() {
+	
+	//MARK: scrollCollectionViewToTop
+	private func scrollCollectionViewToTop() {
+		guard collectionView.numberOfSections > 0 && collectionView.numberOfItems(inSection: 0) > 0 else { return }  // No sections or items, no need to scroll !
+		let topIndexPath = IndexPath(item: 0, section: 0)
+		collectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
+	}
+	
+	//MARK: bindPickerValues
+	private func bindPickerValues() {
 		
-		if let totalSols = viewModel.missionManifest.value?.manifest.totalSols {
-			pickerMaxValue = totalSols
-		} else { pickerMaxValue = 0 }
+		viewModel.totalSols
+			.map { Array(0...$0!) }
+			.bind(to: pickerView.rx.itemTitles) { (_, element) in
+				return String(element)
+			}
+			.disposed(by: bag)
+		configureButtons()
+	}
+	
+	//MARK: setupPicker
+	private func setupPickerView() {
+		pickerView.rx.modelSelected(Int.self)
+			.map { $0.first ?? 0 }
+			.bind(to: viewModel.selectedSol)
+			.disposed(by: bag)
 	}
 	
 	//MARK: addAndStartSpinner
@@ -143,4 +165,57 @@ class PerseveranceViewController: UIViewController {
 		spinner.startAnimating()
 	}
 	
+	//MARK: configureButtons
+	private func configureButtons() {
+		upButton.addTarget(self, action: #selector(upButtonTapped), for: .touchUpInside)
+		upButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+		downButton.addTarget(self, action: #selector(downButtonTapped), for: .touchUpInside)
+		downButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+		bindButtonsToSelectedSol()
+	}
+	
+	@objc private func upButtonTapped() {
+		incrementSelectedSol()
+	}
+	
+	@objc private func downButtonTapped() {
+		decrementSelectedSol()
+	}
+	
+	// MARK: increment - decrement SelectedSol for Buttons
+	private func incrementSelectedSol() {
+		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int? else {
+			return
+		}
+		pickerView.selectRow(currentIndex + 1, inComponent: 0, animated: true)
+		viewModel.selectedSol.accept(currentIndex + 1)
+	}
+	
+	private func decrementSelectedSol() {
+		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int?, currentIndex > 0 else {
+			return
+		}
+		pickerView.selectRow(currentIndex - 1, inComponent: 0, animated: true)
+		viewModel.selectedSol.accept(currentIndex - 1)
+	}
+	
+	//MARK: bindButtonsToSelectedSol
+	private func bindButtonsToSelectedSol() {
+		Observable.combineLatest(viewModel.selectedSol, viewModel.totalSols)
+			.debounce(.milliseconds(350), scheduler: MainScheduler.instance)
+			.bind { [weak self] sol, totalSols in
+				if totalSols == 0 {
+					// Data not fetched yet, disable buttons
+					self?.upButton.isEnabled = false
+					self?.downButton.isEnabled = false
+				} else {
+					let pickerMaxValue = totalSols ?? 0
+					print("OKOK, sol = \(sol), maxValue = \(pickerMaxValue)")
+					self?.upButton.isEnabled = sol < pickerMaxValue
+					self?.downButton.isEnabled = sol > 0
+				}
+			}
+			.disposed(by: bag)
+	}
+
 }

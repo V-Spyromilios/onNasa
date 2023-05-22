@@ -218,12 +218,27 @@
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="2" height="2"/>
                                             </label>
-                                            <pickerView tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTE-XM-fpP">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SMb-7R-PUO">
                                                 <rect key="frame" x="0.0" y="28" width="393" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="ZtC-Lc-WPr"/>
-                                                </constraints>
-                                            </pickerView>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jph-8a-ukd" userLabel="Down Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="50"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                    </button>
+                                                    <pickerView tag="5" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTE-XM-fpP">
+                                                        <rect key="frame" x="46" y="0.0" width="320" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="ZtC-Lc-WPr"/>
+                                                        </constraints>
+                                                    </pickerView>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHC-ig-GkD" userLabel="Up Button">
+                                                        <rect key="frame" x="369" y="0.0" width="24" height="50"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vYH-9n-muj">
                                                 <rect key="frame" x="0.0" y="83" width="393" height="583"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -329,6 +344,9 @@
                     <connections>
                         <outlet property="collectionFlow" destination="3Yw-7k-rOg" id="jd1-U1-OG3"/>
                         <outlet property="collectionView" destination="vYH-9n-muj" id="Z4v-i2-oqh"/>
+                        <outlet property="downButton" destination="jph-8a-ukd" id="Py6-z2-RXP"/>
+                        <outlet property="pickerView" destination="RTE-XM-fpP" id="MMJ-Pt-bGL"/>
+                        <outlet property="upButton" destination="bHC-ig-GkD" id="iXv-dk-jTA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUD-VX-8jp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
