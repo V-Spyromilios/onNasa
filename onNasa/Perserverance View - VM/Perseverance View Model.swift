@@ -20,6 +20,13 @@ final class PerseveranceViewModel {
 	let selectedSol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
 	let missionManifest: BehaviorRelay<MissionManifest?> = BehaviorRelay(value: nil)
 	let totalSols = BehaviorRelay<Int?>(value: 0)
+
+	let fullscreenImageSubject = PublishSubject<UIImage>()
+//	var fullscreenImageObservable: Observable<UIImage> {
+//		return fullscreenImageSubject.asObservable()
+//	}
+
+
 	private let bag = DisposeBag()
 	
 	init() {
@@ -82,7 +89,6 @@ final class PerseveranceViewModel {
 		}
 	}
 	
-	
 	func setNotification() {
 		
 		let content = UNMutableNotificationContent()
@@ -100,10 +106,7 @@ final class PerseveranceViewModel {
 		UNUserNotificationCenter.current().add(request) { error in
 			if let error = error {
 				print("PerserveranceViewModel :: setNotification -> \(error)")
-			} else {
-				print("Notification Request added.")
-			}
+			} else { print("Notification Request added.") }
 		}
 	}
-	
 }

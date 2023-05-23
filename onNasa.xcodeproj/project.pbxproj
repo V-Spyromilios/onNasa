@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF1931F02A1CCB6400E46583 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EF1931EF2A1CCB6400E46583 /* SourceSansPro-Semibold.otf */; };
+		EF1931F22A1CFB3800E46583 /* FullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1931F12A1CFB3800E46583 /* FullScreenViewController.swift */; };
 		EF1A0C7729FA6BAD00069769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C7629FA6BAD00069769 /* AppDelegate.swift */; };
 		EF1A0C7929FA6BAD00069769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C7829FA6BAD00069769 /* SceneDelegate.swift */; };
 		EF1A0C7B29FA6BAD00069769 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0C7A29FA6BAD00069769 /* LogInViewController.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF1931EF2A1CCB6400E46583 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
+		EF1931F12A1CFB3800E46583 /* FullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenViewController.swift; sourceTree = "<group>"; };
 		EF1A0C7329FA6BAD00069769 /* onNasa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onNasa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1A0C7629FA6BAD00069769 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF1A0C7829FA6BAD00069769 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */,
 				EF783AC22A0121F80035CE71 /* Registration View -VM */,
 				EF1A0C7C29FA6BAD00069769 /* Main.storyboard */,
+				EF1931F12A1CFB3800E46583 /* FullScreenViewController.swift */,
 				EFA9215B2A0A4AF900E6B383 /* LandscapeCollectionCell.swift */,
 				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
 				EF783AC32A0122120035CE71 /* Curiosity View - VM */,
@@ -129,6 +134,7 @@
 				EF1A0C7629FA6BAD00069769 /* AppDelegate.swift */,
 				EF1A0C7829FA6BAD00069769 /* SceneDelegate.swift */,
 				EF1A0C7F29FA6BAE00069769 /* Assets.xcassets */,
+				EF1931EF2A1CCB6400E46583 /* SourceSansPro-Semibold.otf */,
 			);
 			path = "Secondary Files";
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1931F02A1CCB6400E46583 /* SourceSansPro-Semibold.otf in Resources */,
 				EF1A0C8329FA6BAE00069769 /* LaunchScreen.storyboard in Resources */,
 				EF1A0C8029FA6BAE00069769 /* Assets.xcassets in Resources */,
 				EF1A0C7E29FA6BAD00069769 /* Main.storyboard in Resources */,
@@ -283,6 +290,7 @@
 				EF3072242A025C5A00A8D4BF /* Spirit View Model.swift in Sources */,
 				EF3072192A025AD700A8D4BF /* Perseverance View Controller.swift in Sources */,
 				EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */,
+				EF1931F22A1CFB3800E46583 /* FullScreenViewController.swift in Sources */,
 				EF3072202A025B9800A8D4BF /* Opportunity View Model.swift in Sources */,
 				EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */,
 				EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */,

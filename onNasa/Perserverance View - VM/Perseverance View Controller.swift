@@ -13,23 +13,22 @@ import Kingfisher
 
 class PerseveranceViewController: UIViewController {
 	
-	
 	@IBOutlet weak var upButton: UIButton!
 	@IBOutlet weak var downButton: UIButton!
 	@IBOutlet weak var collectionFlow: UICollectionViewFlowLayout!
-	@IBOutlet weak var containerView: UIView!
 	@IBOutlet weak var pickerView: UIPickerView!
-	
 	@IBOutlet weak var collectionView: UICollectionView!
+	
 	private let viewModel = PerseveranceViewModel()
 	let spinner = UIActivityIndicatorView()
-	
 	private let bag = DisposeBag()
+	
 	private var pickerMaxValue: Int?
 	private var currentSol: Int?
 	
 	//MARK: CellItem
 	struct CellItem {
+		
 		let urlSource: String
 		let cameraLabelTitle: String
 		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
@@ -54,44 +53,51 @@ class PerseveranceViewController: UIViewController {
 		
 		createSectionsAndDataSource()
 		setupPickerView()
+		bindFullScreenToEmittedImage()
 	}
 	
+	//MARK: createSectionsAndDataSource
 	private func createSectionsAndDataSource() {
+		
 		addAndStartSpinner()
-		//MARK: dataSource
-		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(configureCell:
-																									{ (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
+		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(configureCell: {
+			(dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
 			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
 			
-			if let url = URL(string: item.urlSource) {
-				cell.imageView.kf.setImage(
-					with: url,
-					placeholder: UIImage(named: "nasa-logo"),
-					options: [
-						.scaleFactor(UIScreen.main.scale),
-						.transition(.fade(1)),
-						.cacheOriginalImage
-					])
-			}
-			cell.button.setImage(item.buttonSpeakerImage, for: .normal)
-			cell.button.alpha = 0.4
+			cell.configure(with: item)
+//			cell.buttonTapped
+//				.map { item }
+//				.subscribe(onNext: { item in
+//					print("I heard the tapping...")
+//					if let cachedImage = ImageCache.default.retrieveImageInMemoryCache(forKey: item.urlSource) {
+//						print("Cached Image found...")
+//						self.viewModel.fullscreenImageSubject.onNext(cachedImage)
+//					}
+//				}).disposed(by: self.bag)
 			return cell
 		},
-		configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
+																								   configureSupplementaryView: {
+			(dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
 			
 			let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionHeader", for: indexPath) as! CollectionHeader
 			headerView.labelView.text = dataSource[indexPath.section].model
 			return headerView
 		}
 		) //end of let dataSource...
+		collectionView.rx.modelSelected(CellItem.self)
+				.subscribe(onNext: { [weak self] item in
+					self?.viewModel.fullscreenImageSubject.onNext(ImageCache.default.retrieveImageInMemoryCache(forKey: item.urlSource)!)
+				})
+				.disposed(by: bag)
+		//MARK: sections of UICollection
 		let sections = viewModel.perseveranceData
 			.map { perseveranceData -> [String: [CellItem]] in
 				
 				guard let perseveranceData = perseveranceData else { return [:] }
 				var itemsDict = [String: [CellItem]]()
 				for photo in perseveranceData.photos {
-					let cameraName = photo.camera.name
+					let cameraName = photo.camera.fullName //or .name for 'short' abbreviation
 					let imageUrl = photo.urlSource
 					let item = CellItem(urlSource: imageUrl, cameraLabelTitle: "\(cameraName)")
 					if itemsDict[cameraName] != nil {
@@ -125,10 +131,12 @@ class PerseveranceViewController: UIViewController {
 				self.scrollCollectionViewToTop()
 			}).disposed(by: bag)
 		bindPickerValues()
+		
 	}
 	
 	//MARK: scrollCollectionViewToTop
 	private func scrollCollectionViewToTop() {
+		
 		guard collectionView.numberOfSections > 0 && collectionView.numberOfItems(inSection: 0) > 0 else { return }  // No sections or items, no need to scroll !
 		let topIndexPath = IndexPath(item: 0, section: 0)
 		collectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
@@ -138,7 +146,7 @@ class PerseveranceViewController: UIViewController {
 	private func bindPickerValues() {
 		
 		viewModel.totalSols
-			.map { Array(0...$0!) }
+			.map { Array(0...($0 ?? 0)) }
 			.bind(to: pickerView.rx.itemTitles) { (_, element) in
 				return String(element)
 			}
@@ -147,7 +155,9 @@ class PerseveranceViewController: UIViewController {
 	}
 	
 	//MARK: setupPicker
+	///bind picker's selected row to selectedSol
 	private func setupPickerView() {
+		
 		pickerView.rx.modelSelected(Int.self)
 			.map { $0.first ?? 0 }
 			.bind(to: viewModel.selectedSol)
@@ -167,6 +177,7 @@ class PerseveranceViewController: UIViewController {
 	
 	//MARK: configureButtons
 	private func configureButtons() {
+		
 		upButton.addTarget(self, action: #selector(upButtonTapped), for: .touchUpInside)
 		upButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
 		downButton.addTarget(self, action: #selector(downButtonTapped), for: .touchUpInside)
@@ -184,38 +195,55 @@ class PerseveranceViewController: UIViewController {
 	
 	// MARK: increment - decrement SelectedSol for Buttons
 	private func incrementSelectedSol() {
-		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int? else {
-			return
-		}
+		
+		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int? else { return }
+		
 		pickerView.selectRow(currentIndex + 1, inComponent: 0, animated: true)
 		viewModel.selectedSol.accept(currentIndex + 1)
 	}
 	
 	private func decrementSelectedSol() {
-		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int?, currentIndex > 0 else {
-			return
-		}
+		
+		guard let currentIndex = pickerView.selectedRow(inComponent: 0) as Int?, currentIndex > 0 else { return }
+		
 		pickerView.selectRow(currentIndex - 1, inComponent: 0, animated: true)
 		viewModel.selectedSol.accept(currentIndex - 1)
 	}
 	
 	//MARK: bindButtonsToSelectedSol
 	private func bindButtonsToSelectedSol() {
+		
 		Observable.combineLatest(viewModel.selectedSol, viewModel.totalSols)
 			.debounce(.milliseconds(350), scheduler: MainScheduler.instance)
 			.bind { [weak self] sol, totalSols in
 				if totalSols == 0 {
-					// Data not fetched yet, disable buttons
+					// if Mission Manifest (inlc. totalSols) not yet available, disable buttons
 					self?.upButton.isEnabled = false
 					self?.downButton.isEnabled = false
 				} else {
 					let pickerMaxValue = totalSols ?? 0
-					print("OKOK, sol = \(sol), maxValue = \(pickerMaxValue)")
 					self?.upButton.isEnabled = sol < pickerMaxValue
 					self?.downButton.isEnabled = sol > 0
 				}
 			}
 			.disposed(by: bag)
 	}
-
+	
+	private func bindFullScreenToEmittedImage() {
+		
+		viewModel.fullscreenImageSubject
+			.subscribe(onNext: { image in
+				self.showFullscreenImage(with: image)
+			})
+			.disposed(by: bag)
+	}
+	
+	private func showFullscreenImage(with image: UIImage) {
+		
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let fullScreenVC = storyboard.instantiateViewController(withIdentifier: "fullscreen") as! FullScreenViewController
+		fullScreenVC.image = image
+		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true
+		navigationController?.pushViewController(fullScreenVC, animated: true)
+	}
 }

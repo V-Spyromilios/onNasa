@@ -7,11 +7,19 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
+import Differentiator
 
 class LandscapeCollectionCell: UICollectionViewCell {
 
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var button: UIButton!
+
+	var buttonTapped: ControlEvent<Void> {
+			return button.rx.tap
+		}
+
 
 	override func awakeFromNib() {
 		   super.awakeFromNib()
@@ -29,9 +37,26 @@ class LandscapeCollectionCell: UICollectionViewCell {
 	   }
 
 	override func prepareForReuse() {
-		   super.prepareForReuse()
+		super.prepareForReuse()
+		
+		// Reseting image 
+		imageView.kf.cancelDownloadTask()
+		imageView.image = nil
+	}
 
-		   imageView.kf.cancelDownloadTask()
-		   imageView.image = nil
-	   }
+	func configure(with item: PerseveranceViewController.CellItem) {
+
+		if let url = URL(string: item.urlSource) {
+			imageView.kf.setImage(
+				with: url,
+				placeholder: UIImage(named: "nasa-logo"),
+				options: [
+					.scaleFactor(UIScreen.main.scale),
+					.transition(.fade(1)),
+					.cacheOriginalImage
+				])
+		}
+		button.setImage(item.buttonSpeakerImage, for: .normal)
+		button.alpha = 0.4
+	}
 }
