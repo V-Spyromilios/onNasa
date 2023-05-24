@@ -13,7 +13,6 @@ class TabBarController: UITabBarController {
 		super.viewDidLoad()
 		
 		setTabBarItems()
-
 	}
 	
 	private func setTabBarItems() {

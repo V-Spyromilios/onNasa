@@ -15,24 +15,12 @@ class PerseveranceViewController: UIViewController {
 	
 	@IBOutlet weak var upButton: UIButton!
 	@IBOutlet weak var downButton: UIButton!
-	@IBOutlet weak var collectionFlow: UICollectionViewFlowLayout!
 	@IBOutlet weak var pickerView: UIPickerView!
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	private let viewModel = PerseveranceViewModel()
 	let spinner = UIActivityIndicatorView()
 	private let bag = DisposeBag()
-	
-	private var pickerMaxValue: Int?
-	private var currentSol: Int?
-	
-	//MARK: CellItem
-	struct CellItem {
-		
-		let urlSource: String
-		let cameraLabelTitle: String
-		let buttonSpeakerImage = UIImage(systemName: "speaker.wave.2")
-	}
 	
 	//MARK: PhotoSection
 	struct PhotoSection: SectionModelType {
@@ -41,7 +29,7 @@ class PerseveranceViewController: UIViewController {
 		var items: [CellItem]
 		typealias Item = CellItem
 		
-		init(original: PerseveranceViewController.PhotoSection, items: [PerseveranceViewController.CellItem]) {
+		init(original: PerseveranceViewController.PhotoSection, items: [CellItem]) {
 			self = original
 			self.items = items
 		}
@@ -63,7 +51,7 @@ class PerseveranceViewController: UIViewController {
 		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(configureCell: {
 			(dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
 			
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landscapeCollectionCell", for: indexPath) as! LandscapeCollectionCell
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PerseveranceCollectionCell", for: indexPath) as! PerseveranceCollectionCell
 			
 			cell.configure(with: item)
 //			cell.buttonTapped
@@ -77,7 +65,7 @@ class PerseveranceViewController: UIViewController {
 //				}).disposed(by: self.bag)
 			return cell
 		},
-																								   configureSupplementaryView: {
+			configureSupplementaryView: {
 			(dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
 			
 			let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "collectionHeader", for: indexPath) as! CollectionHeader
@@ -97,7 +85,7 @@ class PerseveranceViewController: UIViewController {
 				guard let perseveranceData = perseveranceData else { return [:] }
 				var itemsDict = [String: [CellItem]]()
 				for photo in perseveranceData.photos {
-					let cameraName = photo.camera.fullName //or .name for 'short' abbreviation
+					let cameraName = photo.camera.fullName //or .name for 'technical' abbreviation
 					let imageUrl = photo.urlSource
 					let item = CellItem(urlSource: imageUrl, cameraLabelTitle: "\(cameraName)")
 					if itemsDict[cameraName] != nil {

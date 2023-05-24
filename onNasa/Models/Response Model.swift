@@ -48,7 +48,8 @@ struct RoverPhotos: Decodable {
 			let container = try decoder.container(keyedBy: CodingKeys.self)
 			self.id = try container.decode(Int.self, forKey: .id)
 			self.sol = try container.decode(Int.self, forKey: .sol)
-			self.urlSource = try container.decode(String.self, forKey: .urlSource)
+			let httpUrl = try container.decode(String.self, forKey: .urlSource)
+			self.urlSource = httpUrl.replacingOccurrences(of: "http://", with: "https://")
 			self.dateTaken = try container.decode(String.self, forKey: .dateTaken)
 			self.camera = try container.decode(Camera.self, forKey: .camera)
 		}

@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import RxSwift
-import RxDataSources
 import RxCocoa
 import Alamofire
 import UserNotifications
@@ -20,14 +19,12 @@ final class PerseveranceViewModel {
 	let selectedSol: BehaviorRelay<Int> = BehaviorRelay(value: 0)
 	let missionManifest: BehaviorRelay<MissionManifest?> = BehaviorRelay(value: nil)
 	let totalSols = BehaviorRelay<Int?>(value: 0)
-
 	let fullscreenImageSubject = PublishSubject<UIImage>()
+	private let bag = DisposeBag()
 //	var fullscreenImageObservable: Observable<UIImage> {
 //		return fullscreenImageSubject.asObservable()
 //	}
 
-
-	private let bag = DisposeBag()
 	
 	init() {
 		
@@ -52,8 +49,14 @@ final class PerseveranceViewModel {
 	}
 	
 	private func getData(for sol: Int) -> Observable<RoverPhotos?> {
+
+		guard let apiKey = Configuration.apiKey else {
+			print("Perseverance :: getData :: API key not found in configuration.")
+			return Observable.error(APIKeyError.unknownKey)
+		}
 		print("Data asked")
-		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ&sol=\(sol)"
+		
+		let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=\(apiKey)&sol=\(sol)"
 		
 		return Observable.create { observer in
 			let request = AF.request(url).validate().responseDecodable(of: RoverPhotos.self) { response in
@@ -75,8 +78,13 @@ final class PerseveranceViewModel {
 	}
 	
 	private func getManifest(completion: ((MissionManifest?) -> Void)?) {
+
+		guard let apiKey = Configuration.apiKey else {
+			print("getManifest :: API key not found in configuration.")
+			return
+		}
 		
-		let url = "https://api.nasa.gov/mars-photos/api/v1/manifests/perseverance?&api_key=7Pgx3s5ScRMcMlqywqNv1kFwweEd4KAT6MJzNdgZ"
+		let url = "https://api.nasa.gov/mars-photos/api/v1/manifests/perseverance?&api_key=\(apiKey)"
 		
 		AF.request(url).validate().responseDecodable(of: MissionManifest.self) { response in
 			switch response.result {
