@@ -243,7 +243,7 @@ class PerseveranceViewController: UIViewController {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let fullScreenVC = storyboard.instantiateViewController(withIdentifier: "fullscreen") as! FullScreenViewController
 		fullScreenVC.image = image
-		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true
+		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true // FullSreenViewController takes control of the status Bar.
 		navigationController?.pushViewController(fullScreenVC, animated: true)
 	}
 }

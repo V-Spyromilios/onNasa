@@ -28,7 +28,7 @@ class FullScreenViewController: UIViewController {
 		
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(imageView)
-		
+
 		imageViewConstraints = [
 			imageView.topAnchor.constraint(equalTo: view.topAnchor),
 			imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -43,13 +43,17 @@ class FullScreenViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		
 		super.viewWillAppear(animated)
-		navigationController?.setNavigationBarHidden(true, animated: animated)
+		navigationController?.setNavigationBarHidden(true, animated: true)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		
 		super.viewWillDisappear(animated)
-		navigationController?.setNavigationBarHidden(false, animated: animated)
+		navigationController?.setNavigationBarHidden(false, animated: true)
+	}
+
+	override var prefersStatusBarHidden: Bool {
+		return true
 	}
 	
 	private func configureSwipeGesture() {
@@ -75,19 +79,18 @@ class FullScreenViewController: UIViewController {
 			if touchPoint.y - initialTouchPoint.y > dismissThreshold {
 				dismissViewController()
 			} else {
-				UIView.animate(withDuration: 0.3) {
-					self.view.frame.origin = .zero
-				}
+				UIView.animate(withDuration: 0.3) { self.view.frame.origin = .zero }
 			}
 		default:
 			break
 		}
 	}
+
 	private func dismissViewController() {
 		UIView.animate(withDuration: 0.3, animations: {
 			self.view.frame.origin = CGPoint(x: 0, y: self.view.bounds.size.height)
 		}) { _ in
-			self.navigationController?.popViewController(animated: false)
+			self.navigationController?.popViewController(animated: true)
 		}
 	}
 	
