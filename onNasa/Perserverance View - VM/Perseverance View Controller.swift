@@ -41,30 +41,23 @@ class PerseveranceViewController: UIViewController {
 		
 		createSectionsAndDataSource()
 		setupPickerView()
-		bindFullScreenToEmittedImage()
+		bindFullScreenSubjectToFullscreenView()
 	}
 	
 	//MARK: createSectionsAndDataSource
 	private func createSectionsAndDataSource() {
 		
 		addAndStartSpinner()
+		//make the cell
 		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, CellItem>>(configureCell: {
 			(dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
 			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PerseveranceCollectionCell", for: indexPath) as! PerseveranceCollectionCell
 			
 			cell.configure(with: item)
-//			cell.buttonTapped
-//				.map { item }
-//				.subscribe(onNext: { item in
-//					print("I heard the tapping...")
-//					if let cachedImage = ImageCache.default.retrieveImageInMemoryCache(forKey: item.urlSource) {
-//						print("Cached Image found...")
-//						self.viewModel.fullscreenImageSubject.onNext(cachedImage)
-//					}
-//				}).disposed(by: self.bag)
 			return cell
 		},
+		//make the header
 			configureSupplementaryView: {
 			(dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
 			
@@ -79,6 +72,7 @@ class PerseveranceViewController: UIViewController {
 				})
 				.disposed(by: bag)
 		//MARK: sections of UICollection
+		//make 2D dict from received data each pos of Array is a header. each header has its images
 		let sections = viewModel.perseveranceData
 			.map { perseveranceData -> [String: [CellItem]] in
 				
@@ -96,6 +90,7 @@ class PerseveranceViewController: UIViewController {
 				}
 				return itemsDict
 			}
+		//make sorted sectionModel from dictionary's keys (= the headers)
 			.map { itemsDict -> [SectionModel<String, CellItem>] in
 				
 				var sections = [SectionModel<String, CellItem>]()
@@ -158,7 +153,7 @@ class PerseveranceViewController: UIViewController {
 		spinner.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 		spinner.center = collectionView.center
 		spinner.style = .large
-		spinner.color = UIColor.red
+		spinner.color = UIColor.darkGray
 		collectionView.addSubview(spinner)
 		spinner.startAnimating()
 	}
@@ -202,7 +197,7 @@ class PerseveranceViewController: UIViewController {
 	private func bindButtonsToSelectedSol() {
 		
 		Observable.combineLatest(viewModel.selectedSol, viewModel.totalSols)
-			.debounce(.milliseconds(350), scheduler: MainScheduler.instance)
+			.debounce(.milliseconds(250), scheduler: MainScheduler.instance)
 			.bind { [weak self] sol, totalSols in
 				if totalSols == 0 {
 					// if Mission Manifest (inlc. totalSols) not yet available, disable buttons
@@ -217,7 +212,7 @@ class PerseveranceViewController: UIViewController {
 			.disposed(by: bag)
 	}
 	
-	private func bindFullScreenToEmittedImage() {
+	private func bindFullScreenSubjectToFullscreenView() {
 		
 		viewModel.fullscreenImageSubject
 			.subscribe(onNext: { image in
@@ -231,7 +226,7 @@ class PerseveranceViewController: UIViewController {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let fullScreenVC = storyboard.instantiateViewController(withIdentifier: "fullscreen") as! FullScreenViewController
 		fullScreenVC.image = image
-		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true // FullSreenViewController takes control of the status Bar.
+		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true // FullSreenViewController takes control of the status Bar. can do 'hideStatusBar'
 		navigationController?.pushViewController(fullScreenVC, animated: true)
 	}
 }

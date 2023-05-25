@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class RegistrationViewController: UIViewController, UITextFieldDelegate {
+class RegistrationViewController: UIViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
 
 	@IBOutlet weak var newUsername: UITextField!
 	@IBOutlet weak var newPassword: UITextField!
@@ -18,6 +18,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
 	private let viewModel = RegistrationViewModel()
 	private let bag = DisposeBag()
+	private let infos = InfoTexts()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +40,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
 		infoButton.configuration?.cornerStyle = .capsule
 		infoButton.configuration?.image = UIImage(systemName: "info.circle.fill")
-		//TODO: info to show popUp with image Description. title: "Ingenuity at 'Airfield Mu' "
-		
 	}
  
 	private func createBindings() {
@@ -53,7 +52,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 		viewModel.registrationIsValid().startWith(false).map { $0 ? 1 : 0.6 }.bind(to: registerButton.rx.alpha)
 			.disposed(by: bag)
 
-		registerButton.rx.tap.subscribe(onNext: {
+		registerButton.rx.tap
+			.subscribe(onNext: {
 			if let username = self.newUsername.text,
 			   let password = self.newPassword.text {
 				UserDefaults.standard.set(password, forKey: username)
@@ -61,10 +61,33 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 			}
 		}).disposed(by: bag)
 
+		infoButton.rx.tap
+			.subscribe(onNext: { [weak self] _ in
+				self?.performSegue(withIdentifier: "toInfoPopUp", sender: self?.infoButton)
+				
+			}).disposed(by: bag)
+
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		return true
+	}
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+			if segue.identifier == "toInfoPopUp",
+			   let infoVC = segue.destination as? InfoPopUpController,
+			   let infoButton = sender as? UIButton {
+				infoVC.popoverPresentationController?.delegate = self
+				infoVC.popoverPresentationController?.sourceView = infoButton
+				infoVC.popoverPresentationController?.sourceRect = infoButton.bounds
+//				infoVC.popoverPresentationController?.backgroundColor = .label
+				infoVC.preferredContentSize = CGSize(width: 220, height: 350)
+				infoVC.infoText = infos.registrationInfo
+				
+			}
+		}
+	func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+		.none // this way popUp is not presented 'modally' !!
 	}
 }

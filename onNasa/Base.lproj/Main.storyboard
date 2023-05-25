@@ -153,6 +153,11 @@
                                 <color key="tintColor" systemColor="systemGray6Color"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title=""/>
+                                <connections>
+                                    <segue destination="bsw-IH-ugm" kind="popoverPresentation" identifier="toInfoPopUp" popoverAnchorView="4nB-3E-xpJ" id="v4C-wK-SfR">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="l4c-8a-QXI"/>
@@ -386,6 +391,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDZ-WT-zU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995" y="-833"/>
+        </scene>
+        <!--Info Pop Up Controller-->
+        <scene sceneID="F9a-U6-hF4">
+            <objects>
+                <viewController storyboardIdentifier="infoPopUpController" id="bsw-IH-ugm" customClass="InfoPopUpController" customModule="onNasa" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="og5-be-iSA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxq-qn-Xgi">
+                                <rect key="frame" x="0.0" y="-13" width="393" height="868"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xM-JL-GT0" userLabel="Container View">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="48.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNQ-5H-emI">
+                                                <rect key="frame" x="8" y="13.999999999999998" width="377" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="oNQ-5H-emI" secondAttribute="bottom" constant="14" id="2a6-IP-e1g"/>
+                                            <constraint firstAttribute="trailing" secondItem="oNQ-5H-emI" secondAttribute="trailing" constant="8" id="HLH-1h-HTj"/>
+                                            <constraint firstItem="oNQ-5H-emI" firstAttribute="leading" secondItem="0xM-JL-GT0" secondAttribute="leading" constant="8" id="KhK-gc-4XR"/>
+                                            <constraint firstItem="oNQ-5H-emI" firstAttribute="top" secondItem="0xM-JL-GT0" secondAttribute="top" constant="14" id="Zna-rF-9tX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0xM-JL-GT0" firstAttribute="leading" secondItem="Xxq-qn-Xgi" secondAttribute="leading" id="93x-F4-ck0"/>
+                                    <constraint firstItem="0xM-JL-GT0" firstAttribute="width" secondItem="Xxq-qn-Xgi" secondAttribute="width" id="GWI-Ib-UT3"/>
+                                    <constraint firstAttribute="bottom" secondItem="0xM-JL-GT0" secondAttribute="bottom" id="MKj-d0-7fs"/>
+                                    <constraint firstAttribute="trailing" secondItem="0xM-JL-GT0" secondAttribute="trailing" id="P1g-xI-wuH"/>
+                                    <constraint firstItem="0xM-JL-GT0" firstAttribute="top" secondItem="Xxq-qn-Xgi" secondAttribute="top" id="vsX-dd-niE"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="7fa-yX-cAi"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="79h-WC-kTU"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VRa-Z1-qY0"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VRa-Z1-qY0" firstAttribute="top" secondItem="Xxq-qn-Xgi" secondAttribute="top" constant="13" id="7dW-xp-vQk"/>
+                            <constraint firstItem="Xxq-qn-Xgi" firstAttribute="bottom" secondItem="VRa-Z1-qY0" secondAttribute="bottom" constant="13" id="Fg4-9Q-vjk"/>
+                            <constraint firstItem="VRa-Z1-qY0" firstAttribute="trailing" secondItem="Xxq-qn-Xgi" secondAttribute="trailing" id="Ipp-Xv-S4W"/>
+                            <constraint firstItem="Xxq-qn-Xgi" firstAttribute="leading" secondItem="VRa-Z1-qY0" secondAttribute="leading" id="PTq-on-h2p"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fJt-iJ-Y44"/>
+                    <connections>
+                        <outlet property="infoLabel" destination="oNQ-5H-emI" id="sZ8-Ap-aeN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Whm-Vy-hIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1444" y="786"/>
         </scene>
         <!--Login Navigation Controller-->
         <scene sceneID="awP-bB-9AU">

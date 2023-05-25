@@ -47,6 +47,8 @@
 		EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56212A03EA11001D1B4B /* PickerView.swift */; };
 		EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */; };
 		EFE22A082A12539800BFAA9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EFE22A072A12539800BFAA9A /* Kingfisher */; };
+		EFF541862A1F93BA00BC2679 /* Info PopUp Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF541852A1F93BA00BC2679 /* Info PopUp Controller.swift */; };
+		EFF541882A1F970400BC2679 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF541872A1F970400BC2679 /* Info.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
 		EFDA56212A03EA11001D1B4B /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		EFDA56232A03F0D4001D1B4B /* Mission Manifest Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mission Manifest Model.swift"; sourceTree = "<group>"; };
+		EFF541852A1F93BA00BC2679 /* Info PopUp Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info PopUp Controller.swift"; sourceTree = "<group>"; };
+		EFF541872A1F970400BC2679 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 				EF1931F12A1CFB3800E46583 /* FullScreenViewController.swift */,
 				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
 				EF1A0C7C29FA6BAD00069769 /* Main.storyboard */,
+				EFF541852A1F93BA00BC2679 /* Info PopUp Controller.swift */,
 				EF1A0C8129FA6BAE00069769 /* LaunchScreen.storyboard */,
 				EF1A0C8429FA6BAE00069769 /* Info.plist */,
 			);
@@ -189,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */,
+				EFF541872A1F970400BC2679 /* Info.swift */,
 				EF783AC02A011CA80035CE71 /* Registration View Model.swift */,
 			);
 			path = "Registration View -VM";
@@ -326,6 +332,7 @@
 				EF1A0C8C29FA6BEF00069769 /* LoginViewModel.swift in Sources */,
 				EF805AE12A1E5E9D009A3E4C /* OpportunityCollectionCell.swift in Sources */,
 				EF783AC12A011CA80035CE71 /* Registration View Model.swift in Sources */,
+				EFF541882A1F970400BC2679 /* Info.swift in Sources */,
 				EF30721B2A025AF600A8D4BF /* Perseverance View Model.swift in Sources */,
 				EF1A0C7B29FA6BAD00069769 /* LogInViewController.swift in Sources */,
 				EF30721E2A025B7300A8D4BF /* Opportunity View Controller.swift in Sources */,
@@ -336,6 +343,7 @@
 				EF1931F22A1CFB3800E46583 /* FullScreenViewController.swift in Sources */,
 				EF3072202A025B9800A8D4BF /* Opportunity View Model.swift in Sources */,
 				EF805ADF2A1E5E1F009A3E4C /* CuriosityCollectionCell.swift in Sources */,
+				EFF541862A1F93BA00BC2679 /* Info PopUp Controller.swift in Sources */,
 				EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */,
 				EFDA56222A03EA11001D1B4B /* PickerView.swift in Sources */,
 				EFDA56242A03F0D4001D1B4B /* Mission Manifest Model.swift in Sources */,
