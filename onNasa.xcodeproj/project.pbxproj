@@ -23,6 +23,7 @@
 		EF1A0CA229FAAA3F00069769 /* CuriosityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */; };
 		EF1A0CA529FAB47B00069769 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A0CA429FAB47B00069769 /* Alamofire */; };
 		EF1A0CA729FABA4500069769 /* Response Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1A0CA629FABA4500069769 /* Response Model.swift */; };
+		EF228B372A20C70600E72472 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF228B362A20C70600E72472 /* MoreViewController.swift */; };
 		EF3072192A025AD700A8D4BF /* Perseverance View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072182A025AD700A8D4BF /* Perseverance View Controller.swift */; };
 		EF30721B2A025AF600A8D4BF /* Perseverance View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */; };
 		EF30721E2A025B7300A8D4BF /* Opportunity View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30721D2A025B7300A8D4BF /* Opportunity View Controller.swift */; };
@@ -66,6 +67,7 @@
 		EF1A0C9F29FAA1D400069769 /* CuriosityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewController.swift; sourceTree = "<group>"; };
 		EF1A0CA129FAAA3F00069769 /* CuriosityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewModel.swift; sourceTree = "<group>"; };
 		EF1A0CA629FABA4500069769 /* Response Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response Model.swift"; sourceTree = "<group>"; };
+		EF228B362A20C70600E72472 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		EF3072182A025AD700A8D4BF /* Perseverance View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perseverance View Controller.swift"; sourceTree = "<group>"; };
 		EF30721A2A025AF600A8D4BF /* Perseverance View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Perseverance View Model.swift"; sourceTree = "<group>"; };
 		EF30721D2A025B7300A8D4BF /* Opportunity View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Opportunity View Controller.swift"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				EF3072252A025C6500A8D4BF /* Spirit View - VM */,
 				EF805AE42A1E607B009A3E4C /* Custom Collection Cells */,
 				EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */,
+				EF228B362A20C70600E72472 /* MoreViewController.swift */,
 				EFC05A7F2A0E6958001313A2 /* CollectionHeader.swift */,
 				EF1931F12A1CFB3800E46583 /* FullScreenViewController.swift */,
 				EFDA56212A03EA11001D1B4B /* PickerView.swift */,
@@ -358,6 +361,7 @@
 				EF805AE32A1E5F67009A3E4C /* SpiritCollectionCell.swift in Sources */,
 				EFC05A802A0E6958001313A2 /* CollectionHeader.swift in Sources */,
 				EF3072222A025C1C00A8D4BF /* Spirit View Controller.swift in Sources */,
+				EF228B372A20C70600E72472 /* MoreViewController.swift in Sources */,
 				EF805ADD2A1E515E009A3E4C /* Cell item.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

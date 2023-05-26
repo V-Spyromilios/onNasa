@@ -114,6 +114,14 @@ class PerseveranceViewController: UIViewController {
 				self.scrollCollectionViewToTop()
 			}).disposed(by: bag)
 		bindPickerValues()
+
+		viewModel.perseveranceData
+			.subscribe(onNext: { [weak self] photos in
+				if photos?.photos.count == 0 {
+					self?.showNoImagesAlert()
+				}
+			})
+			.disposed(by: bag)
 		
 	}
 	
@@ -228,5 +236,18 @@ class PerseveranceViewController: UIViewController {
 		fullScreenVC.image = image
 		fullScreenVC.modalPresentationCapturesStatusBarAppearance = true // FullSreenViewController takes control of the status Bar. can do 'hideStatusBar'
 		navigationController?.pushViewController(fullScreenVC, animated: true)
+	}
+
+	private func showNoImagesAlert() {
+		
+		let alert = UIAlertController(title: "No Images Available", message: "There are no images available for the selected sol. Press OK to request images of sol:  \(viewModel.selectedSol.value + 1)", preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+
+			let currentSol = self?.viewModel.selectedSol.value ?? 0
+			self?.pickerView.selectRow(currentSol + 1, inComponent: 0, animated: true)
+			self?.viewModel.selectedSol.accept(currentSol + 1)
+		}
+		alert.addAction(okAction)
+		present(alert, animated: true, completion: nil)
 	}
 }

@@ -79,6 +79,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate, UIPopov
 			   let infoVC = segue.destination as? InfoPopUpController,
 			   let infoButton = sender as? UIButton {
 				infoVC.popoverPresentationController?.delegate = self
+				infoVC.modalPresentationStyle = .overFullScreen
+//				infoVC.popoverPresentationController?.backgroundColor = .clear
 				infoVC.popoverPresentationController?.sourceView = infoButton
 				infoVC.popoverPresentationController?.sourceRect = infoButton.bounds
 //				infoVC.popoverPresentationController?.backgroundColor = .label

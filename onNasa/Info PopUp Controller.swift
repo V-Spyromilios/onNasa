@@ -23,12 +23,6 @@ class InfoPopUpController: UIViewController {
 		infoLabel.translatesAutoresizingMaskIntoConstraints = false
 		infoLabel.textAlignment = .justified
 		infoLabel.numberOfLines = 0
-
-		view.backgroundColor = .clear
-
-//		let tapRecogniser = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-//		view.addGestureRecognizer(tapRecogniser)
-		
     }
  
 	@objc func dismissView() {
