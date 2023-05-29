@@ -16,7 +16,9 @@ class TabBarController: UITabBarController {
 	}
 	
 	private func setTabBarItems() {
-		
+//		let myArray: [Int]? = nil
+//		let _ = myArray![2] //Check Crashlytics
+
 		tabBar.items?[0].title = "Perseverance"
 		tabBar.items?[1].title = "Curiosity"
 		tabBar.items?[2].title = "Opportunity"

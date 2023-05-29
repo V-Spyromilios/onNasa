@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		diskCache.diskStorage.config.sizeLimit = 1024 * 1024 * 1024 // = 1.07Gb
 		diskCache.diskStorage.config.expiration = .days(30)
+
+		FirebaseApp.configure() // connects to Console, by checking the  Firebase plist
 		return true
 	}
 
