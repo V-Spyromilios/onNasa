@@ -21,10 +21,6 @@ final class PerseveranceViewModel {
 	let totalSols = BehaviorRelay<Int?>(value: 0)
 	let fullscreenImageSubject = PublishSubject<UIImage>()
 	private let bag = DisposeBag()
-//	var fullscreenImageObservable: Observable<UIImage> {
-//		return fullscreenImageSubject.asObservable()
-//	}
-
 	
 	init() {
 		
@@ -35,7 +31,8 @@ final class PerseveranceViewModel {
 		createBindings()
 		setNotification()
 	}
-	
+
+	//MARK: createBindings
 	private func createBindings() {
 		selectedSol
 			.debounce(.milliseconds(350), scheduler: MainScheduler.instance) // to avoid multiple 'explicitlyCancelled'
@@ -45,9 +42,10 @@ final class PerseveranceViewModel {
 			}
 			.bind(to: perseveranceData)
 			.disposed(by: bag)
-		print("Selected Sol from ViewModel: \(selectedSol.value)")
+//		print("Selected Sol from ViewModel: \(selectedSol.value)")
 	}
-	
+
+	//MARK: getData
 	private func getData(for sol: Int) -> Observable<RoverPhotos?> {
 
 		guard let apiKey = Configuration.apiKey else {
@@ -63,11 +61,11 @@ final class PerseveranceViewModel {
 				switch response.result {
 				case .success(let photos):
 					observer.onNext(photos)
-					observer.onCompleted()
+//					observer.onCompleted()
 				case .failure(let error):
 					print("Perseverance :: getData -> \(error)")
 					observer.onNext(nil)
-					observer.onCompleted()
+//					observer.onCompleted()
 				}
 			}
 			
@@ -76,11 +74,12 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
-	
+
+	//MARK: getManifest
 	private func getManifest(completion: ((MissionManifest?) -> Void)?) {
 
 		guard let apiKey = Configuration.apiKey else {
-			print("getManifest :: API key not found in configuration.")
+			print("getManifest :: API key not found in Configuration.")
 			return
 		}
 		
@@ -96,7 +95,8 @@ final class PerseveranceViewModel {
 			}
 		}
 	}
-	
+
+	//MARK: setNotification
 	func setNotification() {
 		
 		let content = UNMutableNotificationContent()
@@ -104,7 +104,7 @@ final class PerseveranceViewModel {
 		
 		content.title = "onNasa"
 		content.body = "New Photos from Perseverance Rover!"
-		content.sound = .default
+		content.sound = .defaultRingtone
 		
 		dateComponents.hour = 20
 		dateComponents.minute = 11

@@ -130,7 +130,7 @@ class PerseveranceViewController: UIViewController {
 		
 		guard collectionView.numberOfSections > 0 && collectionView.numberOfItems(inSection: 0) > 0 else { return }  // No sections or items, no need to scroll !
 		let topIndexPath = IndexPath(item: 0, section: 0)
-		collectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
+		collectionView.scrollToItem(at: topIndexPath, at: .top, animated: false)
 	}
 	
 	//MARK: bindPickerValues

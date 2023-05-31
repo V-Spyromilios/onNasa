@@ -44,7 +44,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate, UIPopov
  
 	private func createBindings() {
 
-		newUsername.rx.text.map{ $0 ?? "" }.bind(to: viewModel.newObservableUsername).disposed(by: bag)
+		newUsername.rx.text.map{ $0 ?? "" }.bind(to: viewModel.newObservableEmail).disposed(by: bag)
 		newPassword.rx.text.map{ $0 ?? "" }.bind(to: viewModel.newObservablePassword).disposed(by: bag)
 
 		viewModel.registrationIsValid().startWith(false).bind(to: registerButton.rx.isEnabled)
@@ -54,11 +54,16 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate, UIPopov
 
 		registerButton.rx.tap
 			.subscribe(onNext: {
-			if let username = self.newUsername.text,
-			   let password = self.newPassword.text {
-				UserDefaults.standard.set(password, forKey: username)
-				self.newPassword.resignFirstResponder()
-			}
+				guard let email = self.viewModel.newObservableEmail.value,
+					  let password = self.viewModel.newObservablePassword.value else { return }
+				
+				self.viewModel.registerAccount(withEmail: email, password: password) {
+					[weak self] success in
+					if success == true {
+						self?.presentAlert()
+					}
+					else { return }
+				}
 		}).disposed(by: bag)
 
 		infoButton.rx.tap
@@ -67,6 +72,23 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate, UIPopov
 				
 			}).disposed(by: bag)
 
+	}
+
+	func presentAlert() {
+
+		let alert = UIAlertController(title: "Welcome!", message: "Account successfully created", preferredStyle: .alert)
+				let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+					self?.navigateToLoginView()
+				}
+				alert.addAction(okAction)
+				present(alert, animated: true, completion: nil)
+	}
+
+	func navigateToLoginView() {
+
+		if let loginViewController = navigationController?.viewControllers.first as? LogInViewController {
+				  navigationController?.popToViewController(loginViewController, animated: true)
+			  }
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {

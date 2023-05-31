@@ -10,21 +10,43 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import FirebaseCore
+import FirebaseAuth
 
 class LoginViewModel {
 
-	let observableUsername: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+	let observableEmail: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 	let observablePassword: BehaviorRelay<String?> = BehaviorRelay(value: nil)
 
 
-	func loginIsValid() -> Observable<Bool> {
-
-		//TODO: Change to search username.Username of UserDefaults LOOK: RegistrationVC::CreteBindings !
-		Observable.combineLatest(observableUsername.startWith(""), observablePassword.startWith("")).map { username, password in
-			if let _ =  UserDefaults.standard.value(forKey: "\(username!)") as? String {
-				return true
-			} else { return false }
+	func emailAndPasswordIsOk() -> Observable<Bool> {
+		
+		Observable.combineLatest(observableEmail.startWith(""), observablePassword.startWith("")).map { email, password in
+			guard let email = email,
+				  let password = password else { return false }
+			guard
+				email.contains("@")
+					&& email.count > 9
+					&& password.count > 1 else { return false }
+			return true
 		}
 	}
+
+	func signIn(withEmail email: String, password: String, completion: @escaping (Bool) -> Void) {
+		FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+			guard let strongSelf = self else { //not to lose self while in async
+				completion(false)
+				return
+			}
+			if let error = error {
+				print("Sign-in failed with error: \(error.localizedDescription)")
+				completion(false)
+			} else {
+				completion(true)
+			}
+		}
+	}
+
+
 }
 

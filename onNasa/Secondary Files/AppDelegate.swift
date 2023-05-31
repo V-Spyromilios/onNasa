@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		diskCache.diskStorage.config.expiration = .days(30)
 
 		FirebaseApp.configure() // connects to Console, by checking the  Firebase plist
+//		UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum) 
 		return true
 	}
 
