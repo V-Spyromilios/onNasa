@@ -31,7 +31,6 @@
 		EF3072222A025C1C00A8D4BF /* Spirit View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072212A025C1C00A8D4BF /* Spirit View Controller.swift */; };
 		EF3072242A025C5A00A8D4BF /* Spirit View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3072232A025C5A00A8D4BF /* Spirit View Model.swift */; };
 		EF39ED5629FFD5DE002A9E14 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */; };
-		EF516A3F2A27A60700B6C3EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF516A3E2A27A60700B6C3EB /* GoogleService-Info.plist */; };
 		EF783ABD2A00FF870035CE71 /* loginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */; };
 		EF783ABF2A01005E0035CE71 /* Registration View Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */; };
 		EF783AC12A011CA80035CE71 /* Registration View Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF783AC02A011CA80035CE71 /* Registration View Model.swift */; };
@@ -81,7 +80,6 @@
 		EF3072212A025C1C00A8D4BF /* Spirit View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spirit View Controller.swift"; sourceTree = "<group>"; };
 		EF3072232A025C5A00A8D4BF /* Spirit View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spirit View Model.swift"; sourceTree = "<group>"; };
 		EF39ED5529FFD5DE002A9E14 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		EF516A3E2A27A60700B6C3EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF783ABC2A00FF870035CE71 /* loginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginNavigationController.swift; sourceTree = "<group>"; };
 		EF783ABE2A01005E0035CE71 /* Registration View Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Controller.swift"; sourceTree = "<group>"; };
 		EF783AC02A011CA80035CE71 /* Registration View Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registration View Model.swift"; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 		EF1A0C8A29FA6BC000069769 /* Secondary Files */ = {
 			isa = PBXGroup;
 			children = (
-				EF516A3E2A27A60700B6C3EB /* GoogleService-Info.plist */,
 				EF805AD32A1E366B009A3E4C /* .gitignore */,
 				EF1A0C7629FA6BAD00069769 /* AppDelegate.swift */,
 				EF1A0C7829FA6BAD00069769 /* SceneDelegate.swift */,
@@ -342,7 +339,6 @@
 				EF805AD62A1E37ED009A3E4C /* Configuration.plist in Resources */,
 				EF1A0C8029FA6BAE00069769 /* Assets.xcassets in Resources */,
 				EF1A0C7E29FA6BAD00069769 /* Main.storyboard in Resources */,
-				EF516A3F2A27A60700B6C3EB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
